@@ -684,7 +684,7 @@ function enviarPedido(event) {
 
   let mensaje = `Hola, quiero hacer el siguiente pedido:\n\n${detalleProductos}\n\n*Total: $${total.toFixed(2)}*\n\n*Datos de contacto:*\nNombre: ${nombre}\nTeléfono: ${telefono}\nCorreo: ${correo}`;
 
-  const numeroWhatsApp = "5213300000000";
+  const numeroWhatsApp = "5213312892022";
   const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
   window.open(urlWhatsApp, "_blank");
