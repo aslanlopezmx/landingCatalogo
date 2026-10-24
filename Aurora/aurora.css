@@ -828,6 +828,7 @@ header {
     flex-direction: column;
     overflow: hidden;
     padding: 1.75rem;
+    position: relative;
     box-shadow: var(--shadow-pop);
 }
 
@@ -847,6 +848,20 @@ header {
     font-size: 1.35rem;
     font-weight: 600;
     color: var(--text-main);
+}
+
+/* Selector: .modal-header.sin-titulo | Pertenece a: Modal de detalles de producto | Modifica: Elimina el espacio del encabezado y deja solo la X en la esquina */
+.modal-header.sin-titulo {
+    position: absolute;
+    top: 0.4rem;
+    right: 1rem;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+.modal-header.sin-titulo h2 {
+    display: none;
 }
 
 /* Selector: .close-modal | Pertenece a: Ventanas modales | Modifica: Botón de cierre (X) */

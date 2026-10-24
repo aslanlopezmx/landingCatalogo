@@ -58,12 +58,10 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 30px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-neumorph);
-    border: 1px solid var(--border-glass);
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
 }
 
 .splash-floating-logo {
@@ -611,7 +609,21 @@ header {
     flex-direction: column;
     overflow: hidden;
     padding: 2rem;
+    position: relative;
     box-shadow: 0 20px 45px rgba(74, 69, 133, 0.25);
+}
+
+.modal-header.sin-titulo {
+    position: absolute;
+    top: 0;
+    right: 1.2rem;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+.modal-header.sin-titulo h2 {
+    display: none;
 }
 
 .modal-header {

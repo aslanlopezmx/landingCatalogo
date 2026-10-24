@@ -33,7 +33,7 @@ function scrollToTop() {
 // CONFIGURACIÓN Y ESTADO GLOBAL DE LA APLICACIÓN
 // --------------------------------------------------------------------------
 const SHEET_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vS5YUVYisQETHlE-eZiCGJsjqL5mv5LZHjU1v3GwN2ztSPhUsS-ZdNfZE0au2opBA/pub?output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRCs6r_BBKeU7bAyH5SPIxBKct17ew6hLNgShlYuKLP97sjAmKrp7xWmRGaAkMDPQ/pub?output=csv";
 
 let todosLosProductos = [];
 let categoriaActual = "todas";
@@ -710,7 +710,8 @@ function verDetallesProducto(idProducto) {
   const titleEl = document.getElementById("detail-title");
   const bodyEl = document.getElementById("detail-body");
 
-  titleEl.textContent = "Información del Producto";
+  titleEl.textContent = "";
+  titleEl.parentElement.classList.add("sin-titulo");
   bodyEl.innerHTML = "";
   indiceImagenActual = 0;
 
@@ -873,6 +874,7 @@ function abrirPoliticas() {
   const bodyEl = document.getElementById("detail-body");
 
   titleEl.textContent = "Aviso de Privacidad";
+  titleEl.parentElement.classList.remove("sin-titulo");
   bodyEl.innerHTML = `
     <div class="legal-content">
         <p class="legal-date">Última actualización: 2026</p>
@@ -908,6 +910,7 @@ function abrirTerminos() {
   const bodyEl = document.getElementById("detail-body");
 
   titleEl.textContent = "Términos y Condiciones";
+  titleEl.parentElement.classList.remove("sin-titulo");
   bodyEl.innerHTML = `
     <div class="legal-content">
         <p class="legal-date">Última actualización: 2026</p>

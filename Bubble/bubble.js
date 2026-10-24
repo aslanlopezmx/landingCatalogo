@@ -710,7 +710,8 @@ function verDetallesProducto(idProducto) {
   const titleEl = document.getElementById("detail-title");
   const bodyEl = document.getElementById("detail-body");
 
-  titleEl.textContent = "Información del Producto";
+  titleEl.textContent = "";
+  titleEl.parentElement.classList.add("sin-titulo");
   bodyEl.innerHTML = "";
   indiceImagenActual = 0;
 
@@ -873,6 +874,7 @@ function abrirPoliticas() {
   const bodyEl = document.getElementById("detail-body");
 
   titleEl.textContent = "Aviso de Privacidad";
+  titleEl.parentElement.classList.remove("sin-titulo");
   bodyEl.innerHTML = `
     <div class="legal-content">
         <p class="legal-date">Última actualización: 2026</p>
@@ -908,6 +910,7 @@ function abrirTerminos() {
   const bodyEl = document.getElementById("detail-body");
 
   titleEl.textContent = "Términos y Condiciones";
+  titleEl.parentElement.classList.remove("sin-titulo");
   bodyEl.innerHTML = `
     <div class="legal-content">
         <p class="legal-date">Última actualización: 2026</p>

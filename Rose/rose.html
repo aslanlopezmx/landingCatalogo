@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leafora</title>
+    <title>Lumi Piel</title>
     <!-- Enlace a la hoja de estilos externa -->
     <link rel="stylesheet" href="rose.css" />
   </head>
@@ -15,20 +15,21 @@
       <!-- Contenedor del logotipo flotante superior -->
       <div class="splash-floating-logo-container">
         <img
-          src="/assets/logo.png"
-          alt="Logotipo"
+          src="/assets/lumi-logo.png"
+          alt="Logotipo de Lumi Piel"
           class="splash-floating-logo"
         />
       </div>
 
       <!-- Tarjeta inferior de bienvenida con botón de inicio -->
       <div class="splash-card">
-        <h1>Leafora</h1>
+        <h1>Lumi Piel</h1>
         <p>
-          Bring Nature Home.<br />Beautiful plants. Happy spaces. Better you.
+          Tu piel, tu luz.<br />Cuidado diario. Ingredientes que funcionan. Piel
+          radiante.
         </p>
         <button class="btn-start" onclick="iniciarApp()">
-          <span>Get Started</span>
+          <span>Comenzar</span>
           <span>→</span>
         </button>
       </div>
@@ -40,7 +41,7 @@
     <div id="main-app">
       <!-- Cabecera fija superior con logotipo y botón de carrito -->
       <header>
-        <div class="logo" onclick="scrollToTop()">Leafora</div>
+        <div class="logo" onclick="scrollToTop()">Lumi Piel</div>
         <button class="cart-btn" onclick="abrirCarrito()">
           🛒 <span id="cart-count">0</span>
         </button>
@@ -51,14 +52,16 @@
         <input
           type="text"
           class="search-input"
-          placeholder="Search products..."
+          placeholder="Buscar limpiadores, sérums, cremas..."
         />
       </div>
 
       <!-- Banner promocional superior -->
       <div class="hero-banner">
-        <h2>Bring Greenery to Life</h2>
-        <p>Curated products for every space and every lifestyle.</p>
+        <h2>Descubre tu piel radiante</h2>
+        <p>
+          Productos de skincare para cada tipo de piel y cada rutina de cuidado.
+        </p>
       </div>
 
       <!-- Botón y menú desplegable para filtros y ordenamiento -->

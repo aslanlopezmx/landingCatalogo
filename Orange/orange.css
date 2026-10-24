@@ -37,7 +37,7 @@ body {
     width: 100%;
     height: 100vh;
     background:
-    url("https://images.unsplash.com/photo-1764660156230-2f3c28730e44?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D") no-repeat center center/cover;
+        url("https://images.unsplash.com/photo-1764660156230-2f3c28730e44?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D") no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -53,11 +53,10 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
-    background: rgba(28, 28, 28, 0.9);
-    border: var(--border-editorial);
-    border-radius: 0px;
-    padding: 2rem;
-    box-shadow: var(--shadow-editorial);
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
 }
 
 .splash-floating-logo {
@@ -619,7 +618,21 @@ header {
     flex-direction: column;
     overflow: hidden;
     padding: 2rem;
+    position: relative;
     box-shadow: var(--shadow-editorial);
+}
+
+.modal-header.sin-titulo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+.modal-header.sin-titulo h2 {
+    display: none;
 }
 
 .modal-header {

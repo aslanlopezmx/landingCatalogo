@@ -129,7 +129,7 @@ select:focus-visible {
     height: 100vh;
     background:
         linear-gradient(var(--splash-top), var(--splash-bottom)),
-        url("https://images.unsplash.com/photo-1773332598413-a6d5279d1ae8?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D") no-repeat center center/cover;
+        url("https://images.unsplash.com/photo-1763455466215-fe9465df4a23?q=80&w=1002&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D") no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -808,6 +808,7 @@ header {
     flex-direction: column;
     overflow: hidden;
     padding: 1.75rem;
+    position: relative;
     box-shadow: var(--shadow-pop);
 }
 
@@ -820,6 +821,20 @@ header {
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--divider);
     padding-bottom: 0.75rem;
+}
+
+/* Selector: .modal-header.sin-titulo | Pertenece a: Modal de detalles de producto | Modifica: Elimina el espacio del encabezado y deja solo la X en la esquina */
+.modal-header.sin-titulo {
+    position: absolute;
+    top: 0.1rem;
+    right: 1.2rem;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+.modal-header.sin-titulo h2 {
+    display: none;
 }
 
 /* Selector: .modal-header h2 | Pertenece a: Ventanas modales | Modifica: Título principal del modal */
