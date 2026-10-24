@@ -1,0 +1,967 @@
+/* ==================================================== */
+/* CONFIGURACIÓN GLOBAL Y VARIABLES                     */
+/* ==================================================== */
+
+/* Selector: :root | Pertenece a: Variables del sistema | Modifica: Define la paleta de colores base para toda la interfaz */
+:root {
+    --bg-dark: #0b1a13;
+    --bg-card: rgba(15, 35, 28, 0.85);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --accent-green: #3d7a5e;
+    --accent-light: #a3c1ad;
+    --btn-primary: linear-gradient(135deg, #9e8759, #7a653c);
+    --btn-primary-hover: linear-gradient(135deg, #b09664, #8b7346);
+    --text-main: #ffffff;
+    --text-muted: #8fa89b;
+}
+
+/* Selector: * | Pertenece a: Reset universal | Modifica: Estandariza box-sizing, márgenes y tipografía general */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Selector: body | Pertenece a: Cuerpo del documento | Modifica: Establece el color de fondo general y altura mínima */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* ==================================================== */
+/* PANTALLA DE PORTADA (SPLASH SCREEN)                  */
+/* ==================================================== */
+
+/* Selector: #splash-screen | Pertenece a: Contenedor de bienvenida | Modifica: Crea una capa fija de fondo con imagen y diseño flexbox */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background:
+        linear-gradient(rgba(11, 26, 19, 0.4), rgba(11, 26, 19, 0.8)),
+        url("https://images.unsplash.com/photo-1545241047-6083a3684587?q=80&w=1000&auto=format&fit=crop") no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+/* Selector: .splash-floating-logo-container | Pertenece a: Splash Screen | Modifica: Centra y posiciona el contenedor del logotipo flotante */
+.splash-floating-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+/* Selector: .splash-floating-logo | Pertenece a: Splash Screen | Modifica: Ajusta el tamaño y añade sombra al logotipo */
+.splash-floating-logo {
+    max-width: 680px;
+    max-height: 320px;
+    width: 100%;
+    object-fit: contain;
+    background: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* Selector: .splash-card | Pertenece a: Splash Screen | Modifica: Da estilo de tarjeta con efecto glassmorphism al bloque de texto y botón */
+.splash-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 1rem;
+}
+
+/* Selector: .splash-card h1 | Pertenece a: Splash Screen | Modifica: Ajusta el tamaño y peso del título de bienvenida */
+.splash-card h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+/* Selector: .splash-card p | Pertenece a: Splash Screen | Modifica: Modifica el color y espaciado del subtítulo */
+.splash-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+/* Selector: .btn-start | Pertenece a: Splash Screen | Modifica: Estiliza el botón de inicio de sesión/entrada a la app */
+.btn-start {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #d4e0b9;
+    color: #0b1a13;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 30px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* ==================================================== */
+/* APLICACIÓN PRINCIPAL Y NAVEGACIÓN SUPERIOR           */
+/* ==================================================== */
+
+/* Selector: #main-app | Pertenece a: Vista principal | Modifica: Limita el ancho del contenedor y añade espacios para cabecera fija */
+#main-app {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* Selector: header | Pertenece a: Cabecera principal | Modifica: Fija la barra superior en la pantalla con efecto de desenfoque */
+header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    background: rgba(11, 26, 19, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1rem;
+    z-index: 95;
+}
+
+/* Selector: .logo | Pertenece a: Cabecera principal | Modifica: Da formato interactivo al texto del logotipo */
+.logo {
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Selector: .logo:hover | Pertenece a: Cabecera principal | Modifica: Cambia el color al pasar el cursor sobre el logotipo */
+.logo:hover {
+    color: var(--accent-light);
+}
+
+/* Selector: .cart-btn | Pertenece a: Cabecera principal | Modifica: Estiliza el botón que despliega el carrito de compras */
+.cart-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Selector: #cart-count | Pertenece a: Cabecera principal | Modifica: Muestra un círculo indicador con la cantidad de artículos en el carrito */
+#cart-count {
+    background: var(--accent-green);
+    color: white;
+    border-radius: 50%;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    font-weight: bold;
+}
+
+/* Selector: .search-container | Pertenece a: Buscador | Modifica: Añade espacio alrededor de la barra de búsqueda */
+.search-container {
+    padding: 0 1rem 1rem 1rem;
+}
+
+/* Selector: .search-input | Pertenece a: Buscador | Modifica: Da formato de campo de entrada redondeado para buscar productos */
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 25px;
+    color: white;
+    outline: none;
+}
+
+/* Selector: .search-input::placeholder | Pertenece a: Buscador | Modifica: Cambia el color del texto guía dentro del buscador */
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Selector: .hero-banner | Pertenece a: Banner promocional | Modifica: Crea un contenedor con degradado para destacar ofertas o mensajes */
+.hero-banner {
+    margin: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(27, 59, 48, 0.8), rgba(15, 35, 28, 0.8));
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+}
+
+/* Selector: .hero-banner h2 | Pertenece a: Banner promocional | Modifica: Ajusta el tamaño del título del banner */
+.hero-banner h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Selector: .hero-banner p | Pertenece a: Banner promocional | Modifica: Cambia el color y tamaño del subtítulo del banner */
+.hero-banner p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* ==================================================== */
+/* FILTROS Y ORDENAMIENTO                               */
+/* ==================================================== */
+
+/* Selector: .filter-container | Pertenece a: Menú de filtros | Modifica: Posiciona el botón principal de filtros */
+.filter-container {
+    position: relative;
+    padding: 0 1rem 1rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Selector: .btn-main-filter | Pertenece a: Menú de filtros | Modifica: Da estilo al botón central de filtrado y ordenamiento */
+.btn-main-filter {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+}
+
+/* Selector: .btn-main-filter:hover | Pertenece a: Menú de filtros | Modifica: Cambia el fondo al pasar el cursor */
+.btn-main-filter:hover {
+    background: rgba(27, 59, 48, 0.9);
+}
+
+/* Selector: .filter-dropdown-menu | Pertenece a: Menú de filtros | Modifica: Crea la ventana flotante desplegable con opciones de filtro */
+.filter-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 350px;
+    background: #11261d;
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 1rem;
+    z-index: 90;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+/* Selector: .filter-dropdown-menu.show | Pertenece a: Menú de filtros | Modifica: Activa la visibilidad del menú desplegable */
+.filter-dropdown-menu.show {
+    display: block;
+}
+
+/* Selector: .filter-section-title | Pertenece a: Menú de filtros | Modifica: Da formato a los títulos de las secciones dentro del menú */
+.filter-section-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 0.4rem;
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Selector: .filter-option | Pertenece a: Menú de filtros | Modifica: Estiliza cada opción seleccionable de filtro u orden */
+.filter-option {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Selector: .filter-option:hover, .filter-option.active | Pertenece a: Menú de filtros | Modifica: Resalta la opción seleccionada o activa */
+.filter-option:hover,
+.filter-option.active {
+    background: rgba(61, 122, 94, 0.4);
+    color: var(--text-main);
+}
+
+/* Selector: .filter-divider | Pertenece a: Menú de filtros | Modifica: Dibuja una línea divisoria entre secciones del menú */
+.filter-divider {
+    height: 1px;
+    background: var(--border-glass);
+    margin: 0.75rem 0;
+}
+
+/* ==================================================== */
+/* CUADRÍCULA Y TARJETAS DE PRODUCTOS                   */
+/* ==================================================== */
+
+/* Selector: .grid-productos | Pertenece a: Catálogo | Modifica: Configura la cuadrícula adaptativa para mostrar productos */
+.grid-productos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 1rem;
+}
+
+/* Selector: @media (min-width: 600px) .grid-productos | Pertenece a: Catálogo | Modifica: Cambia a 2 columnas en pantallas medianas y grandes */
+@media (min-width: 600px) {
+    .grid-productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Selector: .loading-container | Pertenece a: Indicador de carga | Modifica: Centra el spinner mientras cargan los datos de Google Sheets */
+.loading-container {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Selector: .spinner | Pertenece a: Indicador de carga | Modifica: Dibuja y anima un círculo giratorio de carga */
+.spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--accent-light);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+/* Selector: @keyframes spin | Pertenece a: Indicador de carga | Modifica: Define la rotación continua de la animación */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Selector: .producto-card | Pertenece a: Tarjeta de producto | Modifica: Estiliza la tarjeta contenedora de cada producto en el catálogo */
+.producto-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Selector: .card-image-container | Pertenece a: Tarjeta de producto | Modifica: Contenedor visual para la imagen del producto */
+.card-image-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 18px;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Selector: .card-image-container img | Pertenece a: Tarjeta de producto | Modifica: Fuerza una proporción cuadrada (1:1) para la imagen principal */
+.card-image-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+/* Selector: .card-category | Pertenece a: Tarjeta de producto | Modifica: Crea una etiqueta flotante para la categoría del producto */
+.card-category {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.65rem;
+    color: #ffffff;
+    background: rgba(11, 26, 19, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 5;
+}
+
+/* Selector: .card-brand | Pertenece a: Tarjeta de producto | Modifica: Crea una etiqueta flotante para la marca del producto */
+.card-brand {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.65rem;
+    color: #ffffff;
+    background: rgba(11, 26, 19, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 5;
+}
+
+/* Selector: .card-info | Pertenece a: Tarjeta de producto | Modifica: Contenedor para el título y descripción del producto */
+.card-info {
+    margin-bottom: 1rem;
+}
+
+/* Selector: .card-title | Pertenece a: Tarjeta de producto | Modifica: Da formato al nombre del producto en la tarjeta */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+/* Selector: .card-desc | Pertenece a: Tarjeta de producto | Modifica: Estiliza el texto descriptivo del producto */
+.card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+/* Selector: .variants-grid | Pertenece a: Variantes del producto | Modifica: Organiza los selectores de variantes en la tarjeta */
+.variants-grid {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+/* Selector: .variant-group | Pertenece a: Variantes del producto | Modifica: Agrupa etiqueta y selector desplegable de variante */
+.variant-group {
+    flex: 1;
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* Selector: .variant-group label | Pertenece a: Variantes del producto | Modifica: Da estilo a la etiqueta del grupo de variante */
+.variant-group label {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* Selector: .variant-select | Pertenece a: Variantes del producto | Modifica: Estiliza el menú desplegable de opciones de variante */
+.variant-select {
+    width: 100%;
+    background: rgba(11, 26, 19, 0.9);
+    border: 1px solid var(--border-glass);
+    color: white;
+    padding: 0.55rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Selector: .variant-select option | Pertenece a: Variantes del producto | Modifica: Cambia el fondo de las opciones desplegables */
+.variant-select option {
+    background: #0b1a13;
+    color: white;
+}
+
+/* Selector: .card-footer | Pertenece a: Tarjeta de producto | Modifica: Organiza la sección inferior de precios y botones de acción */
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 1rem;
+}
+
+/* Selector: .card-price | Pertenece a: Precios | Modifica: Da formato grande y destacado al precio final o con descuento */
+.card-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* Selector: .precio-original | Pertenece a: Precios | Modifica: Tacha el precio original cuando existe un precio de descuento activo */
+.precio-original {
+    font-size: 1.1rem;
+    text-decoration: line-through;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Selector: .card-actions-row | Pertenece a: Tarjeta de producto | Modifica: Alinea el botón de carrito y enlace de detalles */
+.card-actions-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Selector: .btn-details-link | Pertenece a: Tarjeta de producto | Modifica: Estiliza el enlace para abrir el modal de detalles */
+.btn-details-link {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0.2rem;
+}
+
+/* Selector: .btn-details-link:hover | Pertenece a: Tarjeta de producto | Modifica: Cambia el color al pasar el cursor sobre el enlace de detalles */
+.btn-details-link:hover {
+    color: var(--text-main);
+}
+
+/* Selector: .btn-add-cart-main | Pertenece a: Botón de compra | Modifica: Estiliza el botón principal para añadir el producto al carrito */
+.btn-add-cart-main {
+    background: var(--btn-primary);
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: opacity 0.2s ease, background 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Selector: .btn-add-cart-main:hover | Pertenece a: Botón de compra | Modifica: Cambia el color al pasar el cursor sobre el botón de compra */
+.btn-add-cart-main:hover {
+    background: #bd8411;
+}
+
+/* ==================================================== */
+/* VENTANAS MODALES Y CARRITO                           */
+/* ==================================================== */
+
+/* Selector: .modal-overlay | Pertenece a: Ventanas modales | Modifica: Crea la capa de fondo semitransparente con desenfoque */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 12, 9, 0.85);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 1rem;
+}
+
+/* Selector: .modal-content | Pertenece a: Ventanas modales | Modifica: Define la caja flotante central contenedora de los modales */
+.modal-content {
+    background: #11261d;
+    border: 1px solid var(--border-glass);
+    border-radius: 28px;
+    width: 95%;
+    max-width: 550px;
+    height: auto;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 1.75rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Selector: .modal-header | Pertenece a: Ventanas modales | Modifica: Organiza el título y el botón de cierre superior del modal */
+.modal-header {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 0.75rem;
+}
+
+/* Selector: .modal-header h2 | Pertenece a: Ventanas modales | Modifica: Da formato al título principal dentro del modal */
+.modal-header h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+/* Selector: .close-modal | Pertenece a: Ventanas modales | Modifica: Estiliza el botón de cierre (X) del modal */
+.close-modal {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.35rem;
+    cursor: pointer;
+}
+
+/* Selector: .detail-body-content | Pertenece a: Modal de detalles | Modifica: Habilita desplazamiento interno con scrollbar personalizado */
+.detail-body-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-green) rgba(0, 0, 0, 0.1);
+    padding-right: 0.25rem;
+}
+
+/* Selector: .detail-body-content::-webkit-scrollbar* | Pertenece a: Modal de detalles | Modifica: Estiliza la barra de desplazamiento en navegadores WebKit */
+.detail-body-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.detail-body-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.detail-body-content::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 10px;
+}
+
+/* Selector: .legal-content | Pertenece a: Textos legales | Modifica: Da formato tipográfico a los avisos de privacidad y términos */
+.legal-content {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Selector: .legal-content h3 | Pertenece a: Textos legales | Modifica: Estiliza subtítulos principales de documentos legales */
+.legal-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 0.25rem;
+}
+
+/* Selector: .legal-content h4 | Pertenece a: Textos legales | Modifica: Estiliza secciones secundarias de documentos legales */
+.legal-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-top: 0.5rem;
+}
+
+/* Selector: .legal-content p, .legal-content li | Pertenece a: Textos legales | Modifica: Cambia el color de los párrafos y listas legales */
+.legal-content p,
+.legal-content li {
+    color: var(--text-muted);
+}
+
+/* Selector: .legal-content ul | Pertenece a: Textos legales | Modifica: Añade sangría a las listas con viñetas */
+.legal-content ul {
+    padding-left: 1.25rem;
+}
+
+/* Selector: .legal-date | Pertenece a: Textos legales | Modifica: Da estilo de fecha de actualización */
+.legal-date {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+/* Selector: .cart-items-list | Pertenece a: Carrito de compras | Modifica: Limita la altura del carrito y habilita scroll vertical visible */
+.cart-items-list {
+    flex: 0 1 auto;
+    max-height: 42vh;
+    overflow-y: auto;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-right: 0.4rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-green) rgba(0, 0, 0, 0.1);
+}
+
+/* Selector: .cart-items-list::-webkit-scrollbar* | Pertenece a: Carrito de compras | Modifica: Dibuja la barra de desplazamiento visible en escritorio */
+.cart-items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.cart-items-list::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 10px;
+}
+
+/* Selector: .cart-fixed-footer | Pertenece a: Carrito de compras | Modifica: Mantiene estáticos los totales y el formulario al pie del modal */
+.cart-fixed-footer {
+    flex-shrink: 0;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 0.75rem;
+    background: #11261d;
+}
+
+/* Selector: .cart-item-row | Pertenece a: Carrito de compras | Modifica: Estiliza cada fila de producto dentro del listado del carrito */
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(27, 59, 48, 0.45);
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-glass);
+    font-size: 0.95rem;
+    gap: 0.5rem;
+}
+
+/* Selector: .cart-item-controls | Pertenece a: Carrito de compras | Modifica: Agrupa los botones de cantidad y el botón de eliminar */
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Selector: .qty-btn | Pertenece a: Carrito de compras | Modifica: Da formato a los botones para sumar o restar cantidades (+ / -) */
+.qty-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid var(--border-glass);
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Selector: .qty-btn:hover | Pertenece a: Carrito de compras | Modifica: Cambia el fondo al pasar el cursor sobre los botones de cantidad */
+.qty-btn:hover {
+    background: var(--accent-green);
+}
+
+/* Selector: .btn-remove-item | Pertenece a: Carrito de compras | Modifica: Da formato al botón de eliminar producto del carrito (icono de basura) */
+.btn-remove-item {
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* Selector: .cart-total | Pertenece a: Carrito de compras | Modifica: Muestra de forma destacada el monto total a pagar */
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+/* Selector: .order-form h3 | Pertenece a: Formulario de pedido | Modifica: Estiliza el subtítulo de los datos de contacto */
+.order-form h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+    color: var(--accent-light);
+}
+
+/* Selector: .form-input | Pertenece a: Formulario de pedido | Modifica: Da formato a los campos de texto del formulario de cliente */
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.65rem;
+    background: rgba(11, 26, 19, 0.8);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+/* Selector: .form-input::placeholder | Pertenece a: Formulario de pedido | Modifica: Cambia el color del texto guía en los campos de entrada */
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Selector: .btn-submit-order | Pertenece a: Formulario de pedido | Modifica: Estiliza el botón para generar el mensaje de WhatsApp */
+.btn-submit-order {
+    background: var(--btn-primary);
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 16px;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.05rem;
+}
+
+/* Selector: .btn-submit-order:hover | Pertenece a: Formulario de pedido | Modifica: Cambia el color al pasar el cursor sobre el botón de envío */
+.btn-submit-order:hover {
+    background: #bd8411;
+}
+
+/* ==================================================== */
+/* NAVEGACIÓN INFERIOR Y CARRUSEL                       */
+/* ==================================================== */
+
+/* Selector: nav.bottom-nav | Pertenece a: Barra inferior | Modifica: Fija la barra inferior para accesos legales */
+nav.bottom-nav {
+    position: fixed;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    background: rgba(11, 26, 19, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.6rem 1rem;
+    z-index: 90;
+}
+
+/* Selector: .nav-btn | Pertenece a: Barra inferior | Modifica: Estiliza los botones de políticas y términos en la barra inferior */
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    border-radius: 10px;
+    transition: color 0.2s, background 0.2s;
+}
+
+/* Selector: .nav-btn:hover | Pertenece a: Barra inferior | Modifica: Resalta el botón inferior al pasar el cursor */
+.nav-btn:hover {
+    color: var(--accent-light);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Selector: .carousel-container | Pertenece a: Carrusel de imágenes | Modifica: Contenedor cuadrado (1:1) para el carrusel en el modal de detalles */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 1rem;
+}
+
+/* Selector: .carousel-track | Pertenece a: Carrusel de imágenes | Modifica: Contenedor flexible que alinea horizontalmente las imágenes */
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Selector: .carousel-img | Pertenece a: Carrusel de imágenes | Modifica: Ajusta cada imagen individual para llenar el contenedor del carrusel */
+.carousel-img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Selector: .carousel-btn | Pertenece a: Carrusel de imágenes | Modifica: Estiliza los botones de navegación (flechas) del carrusel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+/* Selector: .carousel-btn:hover | Pertenece a: Carrusel de imágenes | Modifica: Oscurece el fondo de las flechas al pasar el cursor */
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Selector: .carousel-prev | Pertenece a: Carrusel de imágenes | Modifica: Ubica la flecha de desplazamiento a la izquierda */
+.carousel-prev {
+    left: 10px;
+}
+
+/* Selector: .carousel-next | Pertenece a: Carrusel de imágenes | Modifica: Ubica la flecha de desplazamiento a la derecha */
+.carousel-next {
+    right: 10px;
+}
+
+/* Selector: .carousel-indicators | Pertenece a: Carrusel de imágenes | Modifica: Contenedor para los puntos indicadores de posición */
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+
+/* Selector: .carousel-dot | Pertenece a: Carrusel de imágenes | Modifica: Estiliza cada punto indicador individual */
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+}
+
+/* Selector: .carousel-dot.active | Pertenece a: Carrusel de imágenes | Modifica: Resalta el punto correspondiente a la imagen actual */
+.carousel-dot.active {
+    background: #fff;
+}

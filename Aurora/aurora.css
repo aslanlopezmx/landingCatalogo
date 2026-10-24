@@ -1,0 +1,1277 @@
+/* ==================================================================== */
+/* DISEÑO 3 · AURORA — Neumorfismo nocturno con neón cian y violeta     */
+/* Misma estructura de relieves, anillos luminosos en cian/violeta.     */
+/* ==================================================================== */
+
+/* Selector: :root | Pertenece a: Variables del sistema | Modifica: Paleta y sombras del diseño Aurora */
+:root {
+    --scheme: dark;
+
+    --bg-dark: #080b14;
+    --bg-card: rgba(16, 21, 36, 0.9);
+    --surface: #131a2c;
+    --surface-2: #0f1424;
+    --surface-inset: #0a0e1a;
+    --border-glass: rgba(120, 150, 255, 0.13);
+    --divider: rgba(120, 150, 255, 0.14);
+
+    --accent: #25e6d2;
+    --accent-2: #8b6bff;
+    --accent-green: #25e6d2;
+    --accent-light: #7ff1e6;
+    --accent-faint: rgba(37, 230, 210, 0.2);
+
+    --btn-primary: linear-gradient(135deg, #25e6d2, #6b8bff);
+    --btn-primary-hover: linear-gradient(135deg, #4af0df, #8b6bff);
+    --btn-start-bg: linear-gradient(135deg, #25e6d2, #6b8bff);
+    --btn-start-text: #06101c;
+    --on-accent: #06101c;
+
+    --text-main: #e9efff;
+    --text-muted: #7a86a8;
+
+    --shadow-out: 10px 10px 24px rgba(0, 0, 0, 0.6), -6px -6px 16px rgba(110, 140, 255, 0.05);
+    --shadow-out-sm: 5px 5px 12px rgba(0, 0, 0, 0.6), -3px -3px 9px rgba(110, 140, 255, 0.05);
+    --shadow-in: inset 5px 5px 12px rgba(0, 0, 0, 0.7), inset -3px -3px 9px rgba(110, 140, 255, 0.06);
+    --shadow-in-sm: inset 3px 3px 7px rgba(0, 0, 0, 0.7), inset -2px -2px 6px rgba(110, 140, 255, 0.06);
+    --shadow-pop: 18px 18px 48px rgba(0, 0, 0, 0.75), 0 0 36px rgba(107, 139, 255, 0.08);
+    --header-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+    --nav-shadow: 0 -10px 28px rgba(0, 0, 0, 0.5);
+    --glow: 0 0 0 3px rgba(37, 230, 210, 0.14), 0 0 16px rgba(37, 230, 210, 0.65);
+    --glow-soft: 0 6px 20px rgba(37, 230, 210, 0.28);
+    --title-glow: 0 0 18px rgba(37, 230, 210, 0.5);
+    --price-glow: 0 0 14px rgba(37, 230, 210, 0.45);
+
+    --overlay: rgba(4, 6, 12, 0.88);
+    --header-bg: rgba(8, 11, 20, 0.9);
+    --tag-bg: rgba(8, 11, 20, 0.82);
+    --tag-text: #e9efff;
+    --hover-fill: rgba(37, 230, 210, 0.1);
+    --price-sale: #25e6d2;
+    --danger: #ff6b8a;
+    --scroll-track: rgba(0, 0, 0, 0.4);
+    --spinner-track: rgba(120, 150, 255, 0.12);
+    --dot-off: rgba(233, 239, 255, 0.25);
+    --carousel-btn-bg: rgba(10, 14, 26, 0.85);
+    --carousel-btn-text: #e9efff;
+
+    --splash-top: rgba(6, 8, 16, 0.4);
+    --splash-bottom: rgba(6, 8, 16, 0.92);
+    --hero-bg: linear-gradient(135deg, rgba(37, 230, 210, 0.13), rgba(139, 107, 255, 0.16)), #121829;
+    --body-ambient: radial-gradient(circle at 15% -10%, rgba(139, 107, 255, 0.16), transparent 45%), radial-gradient(circle at 100% 100%, rgba(37, 230, 210, 0.1), transparent 45%);
+}
+
+/* Selector: .splash-card h1, .hero-banner h2 (Aurora) | Pertenece a: Títulos | Modifica: Texto con degradado cian-violeta */
+.splash-card h1,
+.hero-banner h2 {
+    background: linear-gradient(90deg, #7ff1e6, #b6a4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: none;
+}
+
+/* Selector: .hero-banner (Aurora) | Pertenece a: Banner | Modifica: Borde con tinte de acento */
+.hero-banner {
+    border-color: rgba(37, 230, 210, 0.25);
+}
+
+/* Selector: .hero-banner::before (Aurora) | Pertenece a: Banner | Modifica: Halo violeta en lugar del de acento */
+.hero-banner::before {
+    background: radial-gradient(circle, rgba(139, 107, 255, 0.35) 0%, transparent 65%);
+}
+
+/* Selector: .card-brand (Aurora) | Pertenece a: Tarjeta de producto | Modifica: Texto de marca en cian con borde luminoso */
+.card-brand {
+    color: var(--accent-light);
+    border-color: rgba(37, 230, 210, 0.4);
+}
+
+/* Selector: .btn-add-cart-main, .btn-submit-order (Aurora) | Pertenece a: Botones primarios | Modifica: Borde interior luminoso */
+.btn-add-cart-main,
+.btn-submit-order {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* ==================================================== */
+/* RESET Y BASE GLOBAL                                  */
+/* ==================================================== */
+
+/* Selector: :root (extra) | Pertenece a: Sistema | Modifica: Esquema de color nativo para controles y barras de scroll */
+:root {
+    color-scheme: var(--scheme);
+}
+
+/* Selector: * | Pertenece a: Reset universal | Modifica: Estandariza box-sizing, márgenes y tipografía general */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Selector: body | Pertenece a: Cuerpo del documento | Modifica: Fondo general con resplandor ambiental sutil */
+body {
+    background-color: var(--bg-dark);
+    background-image: var(--body-ambient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Selector: ::selection | Pertenece a: Texto seleccionado | Modifica: Color de selección acorde a la paleta */
+::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+/* Selector: button:focus-visible, input:focus-visible, select:focus-visible | Pertenece a: Accesibilidad | Modifica: Anillo de foco con el color de acento */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ==================================================== */
+/* PANTALLA DE PORTADA (SPLASH SCREEN)                  */
+/* ==================================================== */
+
+/* Selector: #splash-screen | Pertenece a: Contenedor de bienvenida | Modifica: Fondo con imagen y velo de color de la paleta */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background:
+        linear-gradient(var(--splash-top), var(--splash-bottom)),
+        url("https://plus.unsplash.com/premium_photo-1677870728119-52aef052d7ef?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D") no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+/* Selector: .splash-floating-logo-container | Pertenece a: Splash Screen | Modifica: Centra el contenedor del logotipo flotante */
+.splash-floating-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+/* Selector: .splash-floating-logo | Pertenece a: Splash Screen | Modifica: Tamaño del logotipo y sombra con halo de acento */
+.splash-floating-logo {
+    max-width: 680px;
+    max-height: 320px;
+    width: 100%;
+    object-fit: contain;
+    background: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 18px var(--accent-faint));
+}
+
+/* Selector: .splash-card | Pertenece a: Splash Screen | Modifica: Tarjeta neumórfica con desenfoque */
+.splash-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-out);
+}
+
+/* Selector: .splash-card h1 | Pertenece a: Splash Screen | Modifica: Título de bienvenida */
+.splash-card h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    text-shadow: var(--title-glow);
+}
+
+/* Selector: .splash-card p | Pertenece a: Splash Screen | Modifica: Color del subtítulo */
+.splash-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+/* Selector: .btn-start | Pertenece a: Splash Screen | Modifica: Botón de entrada con degradado de acento y halo */
+.btn-start {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--btn-start-bg);
+    color: var(--btn-start-text);
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 30px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: var(--shadow-out-sm), var(--glow-soft);
+    transition: box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+/* Selector: .btn-start:hover | Pertenece a: Splash Screen | Modifica: Intensifica el halo al pasar el cursor */
+.btn-start:hover {
+    filter: brightness(1.08);
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+/* Selector: .btn-start:active | Pertenece a: Splash Screen | Modifica: Efecto de botón presionado */
+.btn-start:active {
+    box-shadow: var(--shadow-in-sm);
+    filter: brightness(0.96);
+}
+
+/* ==================================================== */
+/* APLICACIÓN PRINCIPAL Y NAVEGACIÓN SUPERIOR           */
+/* ==================================================== */
+
+/* Selector: #main-app | Pertenece a: Vista principal | Modifica: Ancho y espacios (sin cambios de proporción) */
+#main-app {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* Selector: header | Pertenece a: Cabecera principal | Modifica: Barra superior fija con sombra suave */
+header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    background: var(--header-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-glass);
+    box-shadow: var(--header-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1rem;
+    z-index: 95;
+}
+
+/* Selector: .logo | Pertenece a: Cabecera principal | Modifica: Texto del logotipo interactivo */
+.logo {
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+/* Selector: .logo:hover | Pertenece a: Cabecera principal | Modifica: Resplandor de acento al pasar el cursor */
+.logo:hover {
+    color: var(--accent-light);
+    text-shadow: var(--title-glow);
+}
+
+/* Selector: .cart-btn | Pertenece a: Cabecera principal | Modifica: Botón del carrito en relieve neumórfico */
+.cart-btn {
+    background: var(--surface);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    padding: 0.5rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-out-sm);
+    transition: box-shadow 0.2s ease;
+}
+
+/* Selector: .cart-btn:hover | Pertenece a: Cabecera principal | Modifica: Halo suave de acento */
+.cart-btn:hover {
+    box-shadow: var(--shadow-out-sm), 0 0 0 1px var(--accent-faint);
+}
+
+/* Selector: .cart-btn:active | Pertenece a: Cabecera principal | Modifica: Efecto hundido al presionar */
+.cart-btn:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* Selector: #cart-count | Pertenece a: Cabecera principal | Modifica: Indicador con anillo luminoso */
+#cart-count {
+    background: var(--accent-green);
+    color: var(--on-accent);
+    border-radius: 50%;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    font-weight: bold;
+    box-shadow: var(--glow);
+}
+
+/* Selector: .search-container | Pertenece a: Buscador | Modifica: Espacio alrededor de la barra de búsqueda */
+.search-container {
+    padding: 0 1rem 1rem 1rem;
+}
+
+/* Selector: .search-input | Pertenece a: Buscador | Modifica: Campo hundido (inset) estilo neumórfico */
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--surface-inset);
+    border: 1px solid var(--border-glass);
+    border-radius: 25px;
+    color: var(--text-main);
+    outline: none;
+    box-shadow: var(--shadow-in);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Selector: .search-input:focus | Pertenece a: Buscador | Modifica: Anillo de acento al enfocar */
+.search-input:focus {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-in), 0 0 0 3px var(--accent-faint);
+}
+
+/* Selector: .search-input::placeholder | Pertenece a: Buscador | Modifica: Color del texto guía */
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Selector: .hero-banner | Pertenece a: Banner promocional | Modifica: Panel elevado con resplandor de acento */
+.hero-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: 1rem;
+    padding: 1.5rem;
+    background: var(--hero-bg);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    box-shadow: var(--shadow-out);
+}
+
+/* Selector: .hero-banner::before | Pertenece a: Banner promocional | Modifica: Halo radial decorativo en la esquina */
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 60%;
+    height: 180%;
+    background: radial-gradient(circle, var(--accent-faint) 0%, transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Selector: .hero-banner h2 | Pertenece a: Banner promocional | Modifica: Título del banner */
+.hero-banner h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+/* Selector: .hero-banner p | Pertenece a: Banner promocional | Modifica: Subtítulo del banner */
+.hero-banner p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* ==================================================== */
+/* FILTROS Y ORDENAMIENTO                               */
+/* ==================================================== */
+
+/* Selector: .filter-container | Pertenece a: Menú de filtros | Modifica: Posición del botón de filtros */
+.filter-container {
+    position: relative;
+    padding: 0 1rem 1rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Selector: .btn-main-filter | Pertenece a: Menú de filtros | Modifica: Botón de filtros en relieve */
+.btn-main-filter {
+    background: var(--surface);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-out-sm);
+    transition: box-shadow 0.2s ease, color 0.2s ease;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+}
+
+/* Selector: .btn-main-filter:hover | Pertenece a: Menú de filtros | Modifica: Color de acento al pasar el cursor */
+.btn-main-filter:hover {
+    color: var(--accent-light);
+    box-shadow: var(--shadow-out-sm), 0 0 0 1px var(--accent-faint);
+}
+
+/* Selector: .btn-main-filter:active | Pertenece a: Menú de filtros | Modifica: Efecto hundido */
+.btn-main-filter:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* Selector: .filter-dropdown-menu | Pertenece a: Menú de filtros | Modifica: Ventana flotante desplegable */
+.filter-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 350px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 1rem;
+    z-index: 90;
+    box-shadow: var(--shadow-pop);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Selector: .filter-dropdown-menu.show | Pertenece a: Menú de filtros | Modifica: Activa la visibilidad */
+.filter-dropdown-menu.show {
+    display: block;
+}
+
+/* Selector: .filter-section-title | Pertenece a: Menú de filtros | Modifica: Títulos de sección del menú */
+.filter-section-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 0.4rem;
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Selector: .filter-option | Pertenece a: Menú de filtros | Modifica: Opciones seleccionables */
+.filter-option {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+/* Selector: .filter-option:hover, .filter-option.active | Pertenece a: Menú de filtros | Modifica: Opción activa hundida con acento */
+.filter-option:hover,
+.filter-option.active {
+    background: var(--hover-fill);
+    color: var(--text-main);
+}
+
+.filter-option.active {
+    box-shadow: var(--shadow-in-sm);
+    color: var(--accent-light);
+}
+
+/* Selector: .filter-divider | Pertenece a: Menú de filtros | Modifica: Línea divisoria grabada */
+.filter-divider {
+    height: 1px;
+    background: var(--divider);
+    margin: 0.75rem 0;
+}
+
+/* ==================================================== */
+/* CUADRÍCULA Y TARJETAS DE PRODUCTOS                   */
+/* ==================================================== */
+
+/* Selector: .grid-productos | Pertenece a: Catálogo | Modifica: Cuadrícula adaptativa */
+.grid-productos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 1rem;
+}
+
+/* Selector: @media (min-width: 600px) .grid-productos | Pertenece a: Catálogo | Modifica: 2 columnas en pantallas medianas y grandes */
+@media (min-width: 600px) {
+    .grid-productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Selector: .loading-container | Pertenece a: Indicador de carga | Modifica: Centra el spinner */
+.loading-container {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Selector: .spinner | Pertenece a: Indicador de carga | Modifica: Anillo giratorio con halo de acento */
+.spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid var(--spinner-track);
+    border-top: 4px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    filter: drop-shadow(0 0 6px var(--accent-faint));
+}
+
+/* Selector: @keyframes spin | Pertenece a: Indicador de carga | Modifica: Rotación continua */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Selector: .producto-card | Pertenece a: Tarjeta de producto | Modifica: Tarjeta en relieve neumórfico */
+.producto-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-out);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Selector: .producto-card:hover | Pertenece a: Tarjeta de producto | Modifica: Borde y halo de acento sutil */
+.producto-card:hover {
+    border-color: var(--accent-faint);
+    box-shadow: var(--shadow-out), 0 0 24px var(--accent-faint);
+}
+
+/* Selector: .card-image-container | Pertenece a: Tarjeta de producto | Modifica: Marco hundido para la imagen */
+.card-image-container {
+    position: relative;
+    background: var(--surface-inset);
+    border-radius: 18px;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-in);
+}
+
+/* Selector: .card-image-container img | Pertenece a: Tarjeta de producto | Modifica: Proporción cuadrada (1:1) de la imagen */
+.card-image-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+/* Selector: .card-category | Pertenece a: Tarjeta de producto | Modifica: Etiqueta flotante de categoría */
+.card-category {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.65rem;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 5;
+    box-shadow: var(--shadow-out-sm);
+}
+
+/* Selector: .card-brand | Pertenece a: Tarjeta de producto | Modifica: Etiqueta flotante de marca con acento */
+.card-brand {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.65rem;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--accent-faint);
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 5;
+    box-shadow: var(--shadow-out-sm);
+}
+
+/* Selector: .card-info | Pertenece a: Tarjeta de producto | Modifica: Contenedor de título y descripción */
+.card-info {
+    margin-bottom: 1rem;
+}
+
+/* Selector: .card-title | Pertenece a: Tarjeta de producto | Modifica: Nombre del producto */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+/* Selector: .card-desc | Pertenece a: Tarjeta de producto | Modifica: Texto descriptivo */
+.card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+/* Selector: .variants-grid | Pertenece a: Variantes del producto | Modifica: Organiza los selectores de variantes */
+.variants-grid {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+/* Selector: .variant-group | Pertenece a: Variantes del producto | Modifica: Agrupa etiqueta y selector */
+.variant-group {
+    flex: 1;
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* Selector: .variant-group label | Pertenece a: Variantes del producto | Modifica: Etiqueta del grupo */
+.variant-group label {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* Selector: .variant-select | Pertenece a: Variantes del producto | Modifica: Menú desplegable hundido */
+.variant-select {
+    width: 100%;
+    background: var(--surface-inset);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    padding: 0.55rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-in-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Selector: .variant-select:focus | Pertenece a: Variantes del producto | Modifica: Anillo de acento */
+.variant-select:focus {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-in-sm), 0 0 0 3px var(--accent-faint);
+}
+
+/* Selector: .variant-select option | Pertenece a: Variantes del producto | Modifica: Fondo de las opciones */
+.variant-select option {
+    background: var(--surface-2);
+    color: var(--text-main);
+}
+
+/* Selector: .variant-group div[style] | Pertenece a: Variantes fijas (estilo en línea desde JS) | Modifica: Reemplaza colores en línea por los de la paleta sin tocar el JS */
+.variant-group div[style] {
+    background: var(--surface-inset) !important;
+    border-color: var(--border-glass) !important;
+    color: var(--text-main) !important;
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* Selector: .card-footer | Pertenece a: Tarjeta de producto | Modifica: Sección inferior de precio y botones */
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    border-top: 1px solid var(--divider);
+    padding-top: 1rem;
+}
+
+/* Selector: .card-price | Pertenece a: Precios | Modifica: Precio final destacado */
+.card-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* Selector: .card-price[style*="34d399"] | Pertenece a: Precios | Modifica: Color del precio con descuento (reemplaza el color en línea) */
+.card-price[style*="34d399"] {
+    color: var(--price-sale) !important;
+    text-shadow: var(--price-glow);
+}
+
+/* Selector: .precio-original | Pertenece a: Precios | Modifica: Precio original tachado */
+.precio-original {
+    font-size: 1.1rem;
+    text-decoration: line-through;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Selector: .card-actions-row | Pertenece a: Tarjeta de producto | Modifica: Alinea botón de carrito y enlace de detalles */
+.card-actions-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Selector: .btn-details-link | Pertenece a: Tarjeta de producto | Modifica: Enlace para abrir el modal de detalles */
+.btn-details-link {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-faint);
+    text-underline-offset: 3px;
+    padding: 0.2rem;
+    transition: color 0.2s;
+}
+
+/* Selector: .btn-details-link:hover | Pertenece a: Tarjeta de producto | Modifica: Color de acento al pasar el cursor */
+.btn-details-link:hover {
+    color: var(--accent-light);
+}
+
+/* Selector: .btn-add-cart-main | Pertenece a: Botón de compra | Modifica: Botón principal con degradado de acento y halo */
+.btn-add-cart-main {
+    background: var(--btn-primary);
+    color: var(--on-accent);
+    border: none;
+    padding: 0.85rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: opacity 0.2s ease, background 0.2s, box-shadow 0.25s ease;
+    box-shadow: var(--shadow-out-sm), var(--glow-soft);
+}
+
+/* Selector: .btn-add-cart-main:hover | Pertenece a: Botón de compra | Modifica: Degradado más brillante */
+.btn-add-cart-main:hover {
+    background: var(--btn-primary-hover);
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+/* Selector: .btn-add-cart-main:active | Pertenece a: Botón de compra | Modifica: Efecto presionado */
+.btn-add-cart-main:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* ==================================================== */
+/* VENTANAS MODALES Y CARRITO                           */
+/* ==================================================== */
+
+/* Selector: .modal-overlay | Pertenece a: Ventanas modales | Modifica: Capa de fondo con desenfoque */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 1rem;
+}
+
+/* Selector: .modal-content | Pertenece a: Ventanas modales | Modifica: Caja flotante central en relieve */
+.modal-content {
+    background: var(--surface-2);
+    border: 1px solid var(--border-glass);
+    border-radius: 28px;
+    width: 95%;
+    max-width: 550px;
+    height: auto;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-pop);
+}
+
+/* Selector: .modal-header | Pertenece a: Ventanas modales | Modifica: Título y botón de cierre */
+.modal-header {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--divider);
+    padding-bottom: 0.75rem;
+}
+
+/* Selector: .modal-header h2 | Pertenece a: Ventanas modales | Modifica: Título principal del modal */
+.modal-header h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* Selector: .close-modal | Pertenece a: Ventanas modales | Modifica: Botón de cierre (X) */
+.close-modal {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.35rem;
+    cursor: pointer;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+/* Selector: .close-modal:hover | Pertenece a: Ventanas modales | Modifica: Resplandor de acento */
+.close-modal:hover {
+    color: var(--accent);
+    text-shadow: var(--title-glow);
+}
+
+/* Selector: .detail-body-content | Pertenece a: Modal de detalles | Modifica: Scroll interno con barra personalizada */
+.detail-body-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-green) var(--scroll-track);
+    padding-right: 0.25rem;
+}
+
+/* Selector: .detail-body-content::-webkit-scrollbar* | Pertenece a: Modal de detalles | Modifica: Barra de desplazamiento WebKit */
+.detail-body-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.detail-body-content::-webkit-scrollbar-track {
+    background: var(--scroll-track);
+    border-radius: 10px;
+}
+
+.detail-body-content::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 10px;
+}
+
+/* Selector: .legal-content | Pertenece a: Textos legales | Modifica: Formato tipográfico */
+.legal-content {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Selector: .legal-content h3 | Pertenece a: Textos legales | Modifica: Subtítulos principales */
+.legal-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 0.25rem;
+}
+
+/* Selector: .legal-content h4 | Pertenece a: Textos legales | Modifica: Secciones secundarias */
+.legal-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-top: 0.5rem;
+}
+
+/* Selector: .legal-content p, .legal-content li | Pertenece a: Textos legales | Modifica: Color de párrafos y listas */
+.legal-content p,
+.legal-content li {
+    color: var(--text-muted);
+}
+
+/* Selector: .legal-content li::marker | Pertenece a: Textos legales | Modifica: Viñetas con color de acento */
+.legal-content li::marker {
+    color: var(--accent);
+}
+
+/* Selector: .legal-content strong | Pertenece a: Textos legales | Modifica: Negritas legibles */
+.legal-content strong {
+    color: var(--text-main);
+}
+
+/* Selector: .legal-content ul | Pertenece a: Textos legales | Modifica: Sangría de listas */
+.legal-content ul {
+    padding-left: 1.25rem;
+}
+
+/* Selector: .legal-date | Pertenece a: Textos legales | Modifica: Fecha de actualización */
+.legal-date {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+/* Selector: .cart-items-list | Pertenece a: Carrito de compras | Modifica: Lista con scroll vertical */
+.cart-items-list {
+    flex: 0 1 auto;
+    max-height: 42vh;
+    overflow-y: auto;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-right: 0.4rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-green) var(--scroll-track);
+}
+
+/* Selector: .cart-items-list::-webkit-scrollbar* | Pertenece a: Carrito de compras | Modifica: Barra de desplazamiento visible */
+.cart-items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items-list::-webkit-scrollbar-track {
+    background: var(--scroll-track);
+    border-radius: 10px;
+}
+
+.cart-items-list::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 10px;
+}
+
+/* Selector: .cart-fixed-footer | Pertenece a: Carrito de compras | Modifica: Totales y formulario fijos al pie */
+.cart-fixed-footer {
+    flex-shrink: 0;
+    border-top: 1px solid var(--divider);
+    padding-top: 0.75rem;
+    background: var(--surface-2);
+}
+
+/* Selector: .cart-item-row | Pertenece a: Carrito de compras | Modifica: Fila de producto en relieve */
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-glass);
+    font-size: 0.95rem;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-out-sm);
+}
+
+/* Selector: .cart-item-controls | Pertenece a: Carrito de compras | Modifica: Agrupa botones de cantidad y eliminar */
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Selector: .qty-btn | Pertenece a: Carrito de compras | Modifica: Botones +/- circulares neumórficos */
+.qty-btn {
+    background: var(--surface);
+    color: var(--text-main);
+    border: 1px solid var(--border-glass);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-out-sm);
+    transition: box-shadow 0.2s ease, background 0.2s, color 0.2s;
+}
+
+/* Selector: .qty-btn:hover | Pertenece a: Carrito de compras | Modifica: Relleno de acento al pasar el cursor */
+.qty-btn:hover {
+    background: var(--accent-green);
+    color: var(--on-accent);
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+/* Selector: .qty-btn:active | Pertenece a: Carrito de compras | Modifica: Efecto hundido */
+.qty-btn:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* Selector: .btn-remove-item | Pertenece a: Carrito de compras | Modifica: Botón de eliminar producto */
+.btn-remove-item {
+    background: transparent;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: filter 0.2s;
+}
+
+/* Selector: .btn-remove-item:hover | Pertenece a: Carrito de compras | Modifica: Brillo al pasar el cursor */
+.btn-remove-item:hover {
+    filter: brightness(1.25) drop-shadow(0 0 5px var(--danger));
+}
+
+/* Selector: p[style*="ff6b6b"] | Pertenece a: Mensaje de error de carga (estilo en línea desde JS) | Modifica: Color de error acorde a la paleta */
+p[style*="ff6b6b"] {
+    color: var(--danger) !important;
+}
+
+/* Selector: .cart-total | Pertenece a: Carrito de compras | Modifica: Monto total a pagar */
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+}
+
+/* Selector: #cart-total-price | Pertenece a: Carrito de compras | Modifica: Total resaltado con acento */
+#cart-total-price {
+    color: var(--accent-light);
+    text-shadow: var(--price-glow);
+}
+
+/* Selector: .order-form h3 | Pertenece a: Formulario de pedido | Modifica: Subtítulo de datos de contacto */
+.order-form h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+    color: var(--accent-light);
+}
+
+/* Selector: .form-input | Pertenece a: Formulario de pedido | Modifica: Campos hundidos */
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.65rem;
+    background: var(--surface-inset);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    color: var(--text-main);
+    outline: none;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-in-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Selector: .form-input:focus | Pertenece a: Formulario de pedido | Modifica: Anillo de acento al enfocar */
+.form-input:focus {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-in-sm), 0 0 0 3px var(--accent-faint);
+}
+
+/* Selector: .form-input::placeholder | Pertenece a: Formulario de pedido | Modifica: Texto guía */
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Selector: .btn-submit-order | Pertenece a: Formulario de pedido | Modifica: Botón de WhatsApp con degradado de acento */
+.btn-submit-order {
+    background: var(--btn-primary);
+    color: var(--on-accent);
+    border: none;
+    padding: 0.85rem;
+    border-radius: 16px;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.05rem;
+    box-shadow: var(--shadow-out-sm), var(--glow-soft);
+    transition: box-shadow 0.25s ease, background 0.2s;
+}
+
+/* Selector: .btn-submit-order:hover | Pertenece a: Formulario de pedido | Modifica: Degradado y halo más intensos */
+.btn-submit-order:hover {
+    background: var(--btn-primary-hover);
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+/* Selector: .btn-submit-order:active | Pertenece a: Formulario de pedido | Modifica: Efecto presionado */
+.btn-submit-order:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* ==================================================== */
+/* NAVEGACIÓN INFERIOR Y CARRUSEL                       */
+/* ==================================================== */
+
+/* Selector: nav.bottom-nav | Pertenece a: Barra inferior | Modifica: Barra fija con sombra superior */
+nav.bottom-nav {
+    position: fixed;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-glass);
+    box-shadow: var(--nav-shadow);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.6rem 1rem;
+    z-index: 90;
+}
+
+/* Selector: .nav-btn | Pertenece a: Barra inferior | Modifica: Botones de políticas y términos */
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    border-radius: 10px;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+/* Selector: .nav-btn:hover | Pertenece a: Barra inferior | Modifica: Resalta el botón con efecto hundido */
+.nav-btn:hover {
+    color: var(--accent-light);
+    background: var(--hover-fill);
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* Selector: .carousel-container | Pertenece a: Carrusel de imágenes | Modifica: Contenedor cuadrado (1:1) */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface-inset);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-in);
+}
+
+/* Selector: .carousel-track | Pertenece a: Carrusel de imágenes | Modifica: Alinea horizontalmente las imágenes */
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Selector: .carousel-img | Pertenece a: Carrusel de imágenes | Modifica: Imagen individual */
+.carousel-img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Selector: .carousel-btn | Pertenece a: Carrusel de imágenes | Modifica: Flechas circulares con relieve */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--carousel-btn-bg);
+    color: var(--carousel-btn-text);
+    border: 1px solid var(--border-glass);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    z-index: 10;
+    box-shadow: var(--shadow-out-sm);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Selector: .carousel-btn:hover | Pertenece a: Carrusel de imágenes | Modifica: Relleno de acento */
+.carousel-btn:hover {
+    background: var(--accent-green);
+    color: var(--on-accent);
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+/* Selector: .carousel-prev | Pertenece a: Carrusel de imágenes | Modifica: Flecha izquierda */
+.carousel-prev {
+    left: 10px;
+}
+
+/* Selector: .carousel-next | Pertenece a: Carrusel de imágenes | Modifica: Flecha derecha */
+.carousel-next {
+    right: 10px;
+}
+
+/* Selector: .carousel-indicators | Pertenece a: Carrusel de imágenes | Modifica: Puntos indicadores */
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+
+/* Selector: .carousel-dot | Pertenece a: Carrusel de imágenes | Modifica: Punto individual */
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dot-off);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* Selector: .carousel-dot.active | Pertenece a: Carrusel de imágenes | Modifica: Punto activo con anillo luminoso (como la fecha seleccionada de la referencia) */
+.carousel-dot.active {
+    background: var(--accent);
+    box-shadow: var(--glow);
+}
+
+/* ==================================================== */
+/* ACCESIBILIDAD: MOVIMIENTO REDUCIDO                   */
+/* ==================================================== */
+
+/* Selector: @media (prefers-reduced-motion) | Pertenece a: Accesibilidad | Modifica: Desactiva transiciones y animaciones largas */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

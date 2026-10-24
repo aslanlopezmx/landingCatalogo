@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leafora</title>
+    <!-- Enlace a la nueva hoja de estilos inspirada en la referencia pastel/lavanda -->
+    <link rel="stylesheet" href="purple.css" />
+  </head>
+  <body>
+    <!-- ==================================================== -->
+    <!-- SECCIÓN: PANTALLA DE PORTADA (SPLASH SCREEN)         -->
+    <!-- ==================================================== -->
+    <div id="splash-screen">
+      <!-- Contenedor del logotipo flotante superior -->
+      <div class="splash-floating-logo-container">
+        <img
+          src="/assets/logo.png"
+          alt="Logotipo"
+          class="splash-floating-logo"
+        />
+      </div>
+
+      <!-- Tarjeta inferior de bienvenida con botón de inicio -->
+      <div class="splash-card">
+        <h1>Leafora</h1>
+        <p>
+          Bring Nature Home.<br />Beautiful plants. Happy spaces. Better you.
+        </p>
+        <button class="btn-start" onclick="iniciarApp()">
+          <span>Get Started</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- SECCIÓN: APLICACIÓN PRINCIPAL Y CATÁLOGO             -->
+    <!-- ==================================================== -->
+    <div id="main-app">
+      <!-- Cabecera fija superior con logotipo y botón de carrito -->
+      <header>
+        <div class="logo" onclick="scrollToTop()">Leafora</div>
+        <button class="cart-btn" onclick="abrirCarrito()">
+          🛒 <span id="cart-count">0</span>
+        </button>
+      </header>
+
+      <!-- Barra de búsqueda de productos en tiempo real -->
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search products..."
+        />
+      </div>
+
+      <!-- Banner promocional superior -->
+      <div class="hero-banner">
+        <h2>Bring Greenery to Life</h2>
+        <p>Curated products for every space and every lifestyle.</p>
+      </div>
+
+      <!-- Botón y menú desplegable para filtros y ordenamiento -->
+      <div class="filter-container">
+        <button class="btn-main-filter" onclick="toggleFilterMenu(event)">
+          ⚙️ Filtrar y Ordenar
+        </button>
+        <div id="filter-dropdown" class="filter-dropdown-menu">
+          <div class="filter-section-title">Ordenar por Precio</div>
+          <div
+            class="filter-option"
+            onclick="aplicarOrdenamiento('menor-mayor')"
+          >
+            Precio: Menor a Mayor
+          </div>
+          <div
+            class="filter-option"
+            onclick="aplicarOrdenamiento('mayor-menor')"
+          >
+            Precio: Mayor a Menor
+          </div>
+
+          <div class="filter-divider"></div>
+
+          <div class="filter-section-title">Filtrar por Categoría</div>
+          <div id="dynamic-categories-list">
+            <!-- Las categorías se generan dinámicamente aquí -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Cuadrícula contenedora de las tarjetas de productos -->
+      <main id="catalogo" class="grid-productos">
+        <div class="loading-container">
+          <div class="spinner"></div>
+          <p>Cargando catálogo...</p>
+        </div>
+      </main>
+
+      <!-- Barra de navegación inferior con enlaces legales -->
+      <nav class="bottom-nav">
+        <button class="nav-btn" onclick="abrirPoliticas()">
+          Políticas de Privacidad
+        </button>
+        <button class="nav-btn" onclick="abrirTerminos()">
+          Términos y Condiciones
+        </button>
+      </nav>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- SECCIÓN: MODAL DEL CARRITO Y FORMULARIO DE PEDIDO    -->
+    <!-- ==================================================== -->
+    <div id="cart-modal" class="modal-overlay">
+      <div class="modal-content">
+        <!-- Cabecera del modal del carrito -->
+        <div class="modal-header">
+          <h2>Tu Carrito de Compras</h2>
+          <button class="close-modal" onclick="cerrarCarrito()">✕</button>
+        </div>
+
+        <!-- Lista de productos añadidos al carrito -->
+        <div id="cart-items-container" class="cart-items-list">
+          <!-- Los productos se cargan dinámicamente aquí -->
+        </div>
+
+        <!-- Pie de página fijo del carrito (Totales y formulario) -->
+        <div class="cart-fixed-footer">
+          <div class="cart-total">
+            <span>Total a pagar:</span>
+            <span id="cart-total-price">$0</span>
+          </div>
+
+          <form
+            id="order-form"
+            class="order-form"
+            onsubmit="enviarPedido(event)"
+          >
+            <h3>Datos de Contacto</h3>
+            <input
+              type="text"
+              id="nombre-cliente"
+              placeholder="Tu nombre completo"
+              required
+              class="form-input"
+            />
+            <input
+              type="tel"
+              id="telefono-cliente"
+              placeholder="Teléfono de contacto"
+              required
+              class="form-input"
+            />
+            <input
+              type="email"
+              id="correo-cliente"
+              placeholder="Correo electrónico"
+              required
+              class="form-input"
+            />
+            <button type="submit" class="btn-submit-order">
+              Enviar Pedido por WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- SECCIÓN: MODAL DE DETALLES Y CONTENIDOS LEGALES      -->
+    <!-- ==================================================== -->
+    <div id="details-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="detail-title">Información del Producto</h2>
+          <button class="close-modal" onclick="cerrarDetalles()">✕</button>
+        </div>
+        <!-- Cuerpo dinámico para detalles o textos legales -->
+        <div id="detail-body" class="detail-body-content"></div>
+      </div>
+    </div>
+
+    <!-- Enlace al archivo de lógica JavaScript original sin modificar -->
+    <script src="purple.js"></script>
+  </body>
+</html>
