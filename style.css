@@ -1,3 +1,8 @@
+/* Transición suave al hacer clic en los enlaces internos */
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --bg-main: #f8fafc;
     --bg-card: rgba(255, 255, 255, 0.9);
@@ -218,7 +223,7 @@ nav a:hover {
     z-index: 4;
 }
 
-/* Marco negro uniforme: cubre las esquinas de la imagen */
+/* Marco negro uniforme */
 .demo-card::after {
     content: '';
     position: absolute;
@@ -232,8 +237,7 @@ nav a:hover {
 
 .demo-card:hover {
     transform: translateY(-8px) scale(1.02);
-    /* Sombra mejorada y mucho más pronunciada en el hover para las tarjetas de plantillas */
-    box-shadow: 0 45px 85px -15px rgba(0, 0, 0, 0.5), 0 25px 45px -10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 40px 70px -15px rgba(0, 0, 0, 0.6), 0 20px 30px -10px rgba(0, 0, 0, 0.4);
 }
 
 .demo-card-overlay {
@@ -253,6 +257,49 @@ nav a:hover {
     font-size: 1.25rem;
     font-weight: 700;
     color: #fff;
+}
+
+/* SECCIÓN DE GIFS (MEDIDAS DE IPHONE 14 PRO Y ESQUINAS REDONDEADAS) */
+.gifs-section {
+    padding: 5rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gifs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    justify-items: center;
+    margin-top: 3rem;
+}
+
+.gif-container {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 40px;
+    overflow: hidden;
+    border: 4px solid #000;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gif-container img,
+.gif-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gif-caption {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
 }
 
 /* BENEFITS SECTION */
@@ -291,6 +338,52 @@ nav a:hover {
 .benefit-card p {
     color: var(--text-muted);
     font-size: 0.9rem;
+}
+
+/* PREGUNTAS FRECUENTES (ACORDEÓN RETRÁCTIL) */
+details summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary::after {
+    content: '+';
+    float: right;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+    transition: var(--transition);
+}
+
+.faq-card:hover {
+    border-color: var(--accent);
+}
+
+.faq-answer {
+    margin-top: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 /* FOOTER */
