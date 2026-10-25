@@ -40,6 +40,12 @@ let categoriaActual = "todas";
 let ordenPrecio = "ninguno"; // 'ninguno', 'menor-mayor', 'mayor-menor'
 let textoBusqueda = "";
 
+// PAGINACIÓN: cantidad de productos que se muestran por tanda
+const PRODUCTOS_POR_TANDA = 30;
+let limiteVisible = PRODUCTOS_POR_TANDA;
+let productosFiltrados = [];
+let temporizadorBusqueda = null; // Espera (debounce) del buscador
+
 // RECUPERACIÓN DE DATOS: Carga el carrito guardado previamente en localStorage o inicia vacío
 let carrito = JSON.parse(localStorage.getItem("carrito_leafora")) || [];
 
@@ -176,7 +182,7 @@ async function cargarCatalogo() {
     actualizarContadorCarrito();
   } catch (error) {
     console.error("Error al cargar el catálogo:", error);
-    contenedor.innerHTML = `<p style="grid-column: span 1; text-align: center; color: #ff6b6b; padding: 2rem;">Error al cargar los productos. Intente recargar la página.</p>`;
+    contenedor.innerHTML = `<p style="grid-column: span 1; text-align: center; color: #ff6b8a; padding: 2rem;">Error al cargar los productos. Intente recargar la página.</p>`;
   }
 }
 
@@ -317,7 +323,23 @@ function filtrarYRenderizar() {
     });
   }
 
+  // Cada vez que cambia un filtro, orden o búsqueda se reinicia la paginación
+  productosFiltrados = filtrados;
+  limiteVisible = PRODUCTOS_POR_TANDA;
   renderizarProductos(filtrados);
+}
+
+/**
+ * --------------------------------------------------------------------------
+ * FUNCIÓN: verMasProductos()
+ * DESCRIPCIÓN: Agrega la siguiente tanda de productos sin volver a dibujar
+ * las tarjetas ya mostradas (así no se pierden las variantes elegidas).
+ * --------------------------------------------------------------------------
+ */
+function verMasProductos() {
+  const desde = limiteVisible;
+  limiteVisible += PRODUCTOS_POR_TANDA;
+  renderizarProductos(productosFiltrados, desde);
 }
 
 /**
@@ -332,7 +354,9 @@ function configurarBusqueda() {
   if (inputBusqueda) {
     inputBusqueda.addEventListener("input", (e) => {
       textoBusqueda = e.target.value;
-      filtrarYRenderizar();
+      // Espera 300 ms después de la última letra antes de buscar
+      clearTimeout(temporizadorBusqueda);
+      temporizadorBusqueda = setTimeout(filtrarYRenderizar, 300);
     });
   }
 }
@@ -761,7 +785,7 @@ function verDetallesProducto(idProducto) {
         variantsHtml += `
           <div class="variant-group">
               <label>${nombreCampo}:</label>
-              <div style="padding: 0.55rem 0.75rem; background: rgba(11, 26, 19, 0.9); border: 1px solid var(--border-glass); border-radius: 16px; font-size: 0.9rem; color: var(--text-main);">
+              <div style="padding: 0.55rem 0.75rem; background: var(--surface-inset); border: 1px solid var(--border-glass); border-radius: 16px; font-size: 0.9rem; color: var(--text-main);">
                   ${value}
               </div>
           </div>
@@ -774,7 +798,7 @@ function verDetallesProducto(idProducto) {
   let carouselHtml = `
     <div class="carousel-container">
       <div class="carousel-track" id="carousel-track">
-        ${imagenes.map((img) => `<img src="${img}" class="carousel-img" alt="${prod.nombre}">`).join("")}
+        ${imagenes.map((img) => `<img src="${img}" class="carousel-img" alt="${prod.nombre}" loading="lazy">`).join("")}
       </div>
   `;
 
@@ -807,7 +831,7 @@ function verDetallesProducto(idProducto) {
 
   bodyEl.innerHTML = `
     <div class="producto-card" style="box-shadow: none; padding: 0; background: transparent; border: none;">
-        <div class="card-image-container" style="background: transparent; padding: 0;">
+        <div class="card-image-container" style="background: transparent; padding: 0; border: none;">
             ${carouselHtml}
             ${prod.marca ? `<span class="card-brand" style="top: 10px; left: 10px;">${prod.marca}</span>` : ""}
             <span class="card-category" style="top: 10px; right: 10px;">${prod.categoria || "General"}</span>
@@ -940,16 +964,20 @@ function abrirTerminos() {
  * las tarjetas visuales con soporte para precios con descuento e imágenes principales.
  * --------------------------------------------------------------------------
  */
-function renderizarProductos(productos) {
+function renderizarProductos(productos, desde = 0) {
   const contenedor = document.getElementById("catalogo");
-  contenedor.innerHTML = "";
+  if (desde === 0) contenedor.innerHTML = "";
+
+  // Quita el botón "Ver más" anterior (se vuelve a crear al final si hace falta)
+  const botonViejo = contenedor.querySelector(".ver-mas-container");
+  if (botonViejo) botonViejo.remove();
 
   if (productos.length === 0) {
     contenedor.innerHTML = `<p style="grid-column: span 1; text-align: center; color: var(--text-muted); padding: 2rem;">No se encontraron productos.</p>`;
     return;
   }
 
-  productos.forEach((prod) => {
+  productos.slice(desde, limiteVisible).forEach((prod) => {
     const card = document.createElement("div");
     card.className = "producto-card";
 
@@ -997,7 +1025,7 @@ function renderizarProductos(productos) {
           variantsHtml += `
             <div class="variant-group">
                 <label>${nombreCampo}:</label>
-                <div style="padding: 0.55rem 0.75rem; background: rgba(11, 26, 19, 0.9); border: 1px solid var(--border-glass); border-radius: 16px; font-size: 0.9rem; color: var(--text-main);">
+                <div style="padding: 0.55rem 0.75rem; background: var(--surface-inset); border: 1px solid var(--border-glass); border-radius: 16px; font-size: 0.9rem; color: var(--text-main);">
                     ${value}
                 </div>
             </div>
@@ -1024,7 +1052,7 @@ function renderizarProductos(productos) {
 
     card.innerHTML = `
         <div class="card-image-container">
-            <img src="${imagenSrc}" alt="${prod.nombre}">
+            <img src="${imagenSrc}" alt="${prod.nombre}" loading="lazy">
             ${prod.marca ? `<span class="card-brand">${prod.marca}</span>` : ""}
             <span class="card-category">${prod.categoria || "General"}</span>
         </div>
@@ -1047,6 +1075,15 @@ function renderizarProductos(productos) {
 
     contenedor.appendChild(card);
   });
+
+  // Botón "Ver más" si todavía quedan productos por mostrar
+  const restantes = productos.length - limiteVisible;
+  if (restantes > 0) {
+    const cont = document.createElement("div");
+    cont.className = "ver-mas-container";
+    cont.innerHTML = `<button class="btn-ver-mas" onclick="verMasProductos()">Ver más productos <span>(${restantes} restantes)</span></button>`;
+    contenedor.appendChild(cont);
+  }
 }
 
 /**

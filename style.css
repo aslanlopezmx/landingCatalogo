@@ -226,7 +226,7 @@ nav a:hover {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: url("assets/screenshots/UpperBar.jpg") top center / 100% auto no-repeat;
+    background: url("assets/screenshots/UpperBar.png") top center / 100% auto no-repeat;
     /* barra superior */
     box-shadow: inset 0 0 0 6px #000;
     pointer-events: none;

@@ -1259,6 +1259,51 @@ nav.bottom-nav {
 }
 
 /* ==================================================== */
+/* BOTÓN "VER MÁS" (PAGINACIÓN DEL CATÁLOGO)            */
+/* ==================================================== */
+
+/* Selector: .ver-mas-container | Pertenece a: Paginación | Modifica: Ocupa todo el ancho de la cuadrícula y centra el botón */
+.ver-mas-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0 1rem;
+}
+
+/* Selector: .btn-ver-mas | Pertenece a: Paginación | Modifica: Botón píldora terracota */
+.btn-ver-mas {
+    background: var(--btn-primary);
+    color: var(--on-accent);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    box-shadow: var(--shadow-out-sm), var(--glow-soft);
+    transition: box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.btn-ver-mas span {
+    font-weight: 400;
+    font-size: 0.8rem;
+    opacity: 0.85;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.btn-ver-mas:hover {
+    filter: brightness(1.08);
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+.btn-ver-mas:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* ==================================================== */
 /* ACCESIBILIDAD: MOVIMIENTO REDUCIDO                   */
 /* ==================================================== */
 

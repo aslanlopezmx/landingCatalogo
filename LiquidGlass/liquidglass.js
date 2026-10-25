@@ -40,6 +40,12 @@ let categoriaActual = "todas";
 let ordenPrecio = "ninguno"; // 'ninguno', 'menor-mayor', 'mayor-menor'
 let textoBusqueda = "";
 
+// PAGINACIÓN: cantidad de productos que se muestran por tanda
+const PRODUCTOS_POR_TANDA = 30;
+let limiteVisible = PRODUCTOS_POR_TANDA;
+let productosFiltrados = [];
+let temporizadorBusqueda = null; // Espera (debounce) del buscador
+
 // RECUPERACIÓN DE DATOS: Carga el carrito guardado previamente en localStorage o inicia vacío
 let carrito = JSON.parse(localStorage.getItem("carrito_leafora")) || [];
 
@@ -157,6 +163,9 @@ async function cargarCatalogo() {
       .filter((p) => {
         // Excluye filas vacías, sin ID y productos con estado "inactivo"
         if (!p || !p.id) return false;
+        // Excluye filas "preparadas" sin datos: requiere nombre y precio mayor a 0
+        if (!p.nombre || !p.nombre.trim()) return false;
+        if (!(parseFloat(p.precio) > 0)) return false;
         const estadoNorm = normalizarTexto(p.estado);
         return estadoNorm !== "inactivo";
       });
@@ -317,7 +326,23 @@ function filtrarYRenderizar() {
     });
   }
 
+  // Cada vez que cambia un filtro, orden o búsqueda se reinicia la paginación
+  productosFiltrados = filtrados;
+  limiteVisible = PRODUCTOS_POR_TANDA;
   renderizarProductos(filtrados);
+}
+
+/**
+ * --------------------------------------------------------------------------
+ * FUNCIÓN: verMasProductos()
+ * DESCRIPCIÓN: Agrega la siguiente tanda de productos sin volver a dibujar
+ * las tarjetas ya mostradas (así no se pierden las variantes elegidas).
+ * --------------------------------------------------------------------------
+ */
+function verMasProductos() {
+  const desde = limiteVisible;
+  limiteVisible += PRODUCTOS_POR_TANDA;
+  renderizarProductos(productosFiltrados, desde);
 }
 
 /**
@@ -332,7 +357,9 @@ function configurarBusqueda() {
   if (inputBusqueda) {
     inputBusqueda.addEventListener("input", (e) => {
       textoBusqueda = e.target.value;
-      filtrarYRenderizar();
+      // Espera 300 ms después de la última letra antes de buscar
+      clearTimeout(temporizadorBusqueda);
+      temporizadorBusqueda = setTimeout(filtrarYRenderizar, 300);
     });
   }
 }
@@ -940,16 +967,20 @@ function abrirTerminos() {
  * las tarjetas visuales con soporte para precios con descuento e imágenes principales.
  * --------------------------------------------------------------------------
  */
-function renderizarProductos(productos) {
+function renderizarProductos(productos, desde = 0) {
   const contenedor = document.getElementById("catalogo");
-  contenedor.innerHTML = "";
+  if (desde === 0) contenedor.innerHTML = "";
+
+  // Quita el botón "Ver más" anterior (se vuelve a crear al final si hace falta)
+  const botonViejo = contenedor.querySelector(".ver-mas-container");
+  if (botonViejo) botonViejo.remove();
 
   if (productos.length === 0) {
     contenedor.innerHTML = `<p style="grid-column: span 1; text-align: center; color: var(--text-muted); padding: 2rem;">No se encontraron productos.</p>`;
     return;
   }
 
-  productos.forEach((prod) => {
+  productos.slice(desde, limiteVisible).forEach((prod) => {
     const card = document.createElement("div");
     card.className = "producto-card";
 
@@ -1024,7 +1055,7 @@ function renderizarProductos(productos) {
 
     card.innerHTML = `
         <div class="card-image-container">
-            <img src="${imagenSrc}" alt="${prod.nombre}">
+            <img src="${imagenSrc}" alt="${prod.nombre}" loading="lazy">
             ${prod.marca ? `<span class="card-brand">${prod.marca}</span>` : ""}
             <span class="card-category">${prod.categoria || "General"}</span>
         </div>
@@ -1047,6 +1078,15 @@ function renderizarProductos(productos) {
 
     contenedor.appendChild(card);
   });
+
+  // Botón "Ver más" si todavía quedan productos por mostrar
+  const restantes = productos.length - limiteVisible;
+  if (restantes > 0) {
+    const cont = document.createElement("div");
+    cont.className = "ver-mas-container";
+    cont.innerHTML = `<button class="btn-ver-mas" onclick="verMasProductos()">Ver más productos <span>(${restantes} restantes)</span></button>`;
+    contenedor.appendChild(cont);
+  }
 }
 
 /**

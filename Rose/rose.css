@@ -1257,6 +1257,41 @@ nav.bottom-nav {
     box-shadow: var(--glow);
 }
 
+.ver-mas-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0 1rem;
+}
+
+.btn-ver-mas {
+    background: var(--btn-primary);
+    color: var(--on-accent);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-out-sm), var(--glow-soft);
+    transition: box-shadow 0.25s ease, background 0.2s;
+}
+
+.btn-ver-mas span {
+    font-weight: 300;
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+.btn-ver-mas:hover {
+    background: var(--btn-primary-hover);
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+.btn-ver-mas:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
 /* ==================================================== */
 /* ACCESIBILIDAD: MOVIMIENTO REDUCIDO                   */
 /* ==================================================== */

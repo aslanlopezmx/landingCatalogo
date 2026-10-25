@@ -1252,6 +1252,61 @@ nav.bottom-nav {
 }
 
 /* ==================================================== */
+/* BOTÓN "VER MÁS" (PAGINACIÓN DEL CATÁLOGO)            */
+/* ==================================================== */
+
+/* Selector: .ver-mas-container | Pertenece a: Paginación | Modifica: Ocupa todo el ancho de la cuadrícula y centra el botón */
+.ver-mas-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0 1rem;
+}
+
+/* Selector: .btn-ver-mas | Pertenece a: Paginación | Modifica: Píldora de cristal lavanda, igual que el botón de inicio */
+.btn-ver-mas {
+    background: linear-gradient(180deg, rgba(224, 227, 252, 0.97), rgba(190, 198, 246, 0.75));
+    color: #2d3250;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px) saturate(1.3);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    box-shadow: var(--shadow-out-sm), var(--glow-soft);
+    transition: box-shadow 0.25s ease, background 0.2s;
+}
+
+.btn-ver-mas span {
+    font-weight: 400;
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+.btn-ver-mas:hover {
+    background: linear-gradient(180deg, rgba(236, 238, 254, 1), rgba(204, 211, 250, 0.85));
+    box-shadow: var(--shadow-out-sm), var(--glow);
+}
+
+.btn-ver-mas:active {
+    box-shadow: var(--shadow-in-sm);
+}
+
+/* ==================================================== */
+/* MODAL DE DETALLES: LÍMITE DE TAMAÑO DE LA IMAGEN     */
+/* ==================================================== */
+
+#detail-body .card-image-container {
+    width: 100%;
+    max-width: min(100%, 40vh);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==================================================== */
 /* ACCESIBILIDAD: MOVIMIENTO REDUCIDO                   */
 /* ==================================================== */
 

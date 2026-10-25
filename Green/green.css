@@ -980,3 +980,51 @@ nav.bottom-nav {
 .carousel-dot.active {
     background: #fff;
 }
+
+/* ==================================================== */
+/* BOTÓN "VER MÁS" (PAGINACIÓN DEL CATÁLOGO)            */
+/* ==================================================== */
+
+/* Selector: .ver-mas-container | Pertenece a: Paginación | Modifica: Ocupa todo el ancho de la cuadrícula y centra el botón */
+.ver-mas-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0 1rem;
+}
+
+/* Selector: .btn-ver-mas | Pertenece a: Paginación | Modifica: Botón con el mismo degradado dorado del botón de compra */
+.btn-ver-mas {
+    background: var(--btn-primary);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s ease, background 0.2s;
+}
+
+.btn-ver-mas span {
+    font-weight: 400;
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+.btn-ver-mas:hover {
+    background: #bd8411;
+}
+
+/* ==================================================== */
+/* MODAL DE DETALLES: LÍMITE DE TAMAÑO DE LA IMAGEN     */
+/* ==================================================== */
+
+/* Selector: #detail-body .card-image-container | Pertenece a: Modal de detalles | Modifica: Limita el ancho de la imagen y la centra */
+#detail-body .card-image-container {
+    width: 100%;
+    max-width: min(100%, 40vh);
+    margin-left: auto;
+    margin-right: auto;
+}
