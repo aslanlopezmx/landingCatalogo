@@ -33,7 +33,7 @@ function scrollToTop() {
 // CONFIGURACIÓN Y ESTADO GLOBAL DE LA APLICACIÓN
 // --------------------------------------------------------------------------
 const SHEET_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRCs6r_BBKeU7bAyH5SPIxBKct17ew6hLNgShlYuKLP97sjAmKrp7xWmRGaAkMDPQ/pub?output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfbk-tadZi2fJVsLPMI3ZlG8EPwbSXG656BazX6O-ktvFaqZCRlQ06hhXrzje5aw/pub?output=csv";
 
 let todosLosProductos = [];
 let categoriaActual = "todas";
