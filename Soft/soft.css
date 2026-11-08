@@ -1079,3 +1079,267 @@ nav.bottom-nav {
     background: var(--btn-primary-hover);
     transform: translateY(-2px);
 }
+
+/* ==================================================================== */
+/* VISTA DE ESCRITORIO (solo pantallas de 1024px o más)                 */
+/* Todo lo de este bloque vive dentro del @media: en celular y tablet   */
+/* no cambia absolutamente nada.                                        */
+/* ==================================================================== */
+@media (min-width: 1024px) {
+
+    /* ---------- Estructura general: barra lateral + contenido ---------- */
+
+    /* El JS muestra la app con style="display: block"; este selector lo sustituye por una cuadrícula solo en escritorio */
+    #main-app[style*="display: block"] {
+        display: grid !important;
+        grid-template-columns: 280px minmax(0, 1fr);
+        grid-template-rows: auto auto 1fr auto;
+        column-gap: 2.25rem;
+        max-width: 1320px;
+        padding: 112px 2rem 2rem;
+    }
+
+    /* ---------- Barra superior de ancho completo ---------- */
+    header {
+        left: 0;
+        transform: none;
+        max-width: none;
+        width: 100%;
+        padding: 1.1rem max(2rem, calc((100% - 1320px) / 2 + 2rem));
+    }
+
+    .logo {
+        font-size: 1.7rem;
+        letter-spacing: 0.02em;
+    }
+
+    .cart-btn {
+        padding: 0.75rem 1.3rem;
+        font-size: 1rem;
+    }
+
+    /* ---------- Banner principal más amplio ---------- */
+    .hero-banner {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        margin: 0 0 2rem;
+        min-height: 240px;
+        padding: 2.75rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 40px;
+    }
+
+    .hero-banner h2 {
+        font-size: 2.7rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.75rem;
+        max-width: 560px;
+    }
+
+    .hero-banner p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        max-width: 480px;
+        margin-bottom: 0;
+    }
+
+    /* ---------- Buscador: arriba del catálogo, más grande ---------- */
+    .search-container {
+        grid-column: 2;
+        grid-row: 2;
+        padding: 0 0 1.5rem;
+    }
+
+    .search-input {
+        padding: 1.1rem 1.6rem;
+        font-size: 1.05rem;
+        border-radius: 30px;
+    }
+
+    /* ---------- Filtros: panel lateral fijo siempre visible ---------- */
+    .filter-container {
+        grid-column: 1;
+        grid-row: 2 / span 2;
+        align-self: start;
+        position: sticky;
+        top: 110px;
+        display: block;
+        padding: 1.5rem 1.25rem;
+        background: var(--bg-card);
+        border: 2px solid var(--border-glass);
+        border-radius: 36px;
+        box-shadow: var(--shadow-clay);
+    }
+
+    .filter-container::before {
+        content: "Explorar";
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #3b4b45;
+        padding: 0 0.8rem 0.9rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 2px solid rgba(204, 188, 168, 0.7);
+    }
+
+    /* El botón "Filtrar y Ordenar" ya no hace falta: el menú queda abierto */
+    .btn-main-filter {
+        display: none;
+    }
+
+    .filter-dropdown-menu {
+        display: block !important;
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .filter-section-title {
+        margin-top: 1rem;
+        padding: 0 0.8rem;
+    }
+
+    .filter-option {
+        font-size: 0.95rem;
+        padding: 0.65rem 0.8rem;
+    }
+
+    /* ---------- Cuadrícula de productos de 3 columnas (4 en pantallas grandes) ---------- */
+    .grid-productos {
+        grid-column: 2;
+        grid-row: 3;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+        padding: 0;
+        align-content: start;
+    }
+
+    .producto-card {
+        padding: 1.4rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .producto-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-price {
+        font-size: 1.6rem;
+    }
+
+    .variants-grid {
+        gap: 0.6rem;
+    }
+
+    /* Botón de compra a todo el ancho y enlace "Detalles" debajo */
+    .card-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.4rem;
+    }
+
+    .btn-details-link {
+        text-align: center;
+        padding: 0.35rem;
+    }
+
+    /* ---------- Pie de página como barra normal, no fija ---------- */
+    nav.bottom-nav {
+        position: static;
+        grid-column: 1 / -1;
+        grid-row: 4;
+        margin-top: 3rem;
+        padding: 1.5rem 0 0;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: none;
+        border-top: 2px solid rgba(204, 188, 168, 0.7);
+        justify-content: center;
+        gap: 2.5rem;
+    }
+
+    .nav-btn {
+        font-size: 0.85rem;
+    }
+
+    /* ---------- Ventana de detalle del producto en dos columnas ---------- */
+    #details-modal .modal-content {
+        max-width: 980px;
+    }
+
+    #detail-body .producto-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: auto auto 1fr auto;
+        column-gap: 2.25rem;
+        align-items: start;
+        justify-content: stretch;
+    }
+
+    #detail-body .card-image-container {
+        grid-column: 1;
+        grid-row: 1 / span 4;
+        max-width: none;
+        margin: 0;
+    }
+
+    #detail-body .carousel-container {
+        margin-bottom: 0;
+    }
+
+    #detail-body .card-info {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #detail-body .variants-grid {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    #detail-body .card-footer {
+        grid-column: 2;
+        grid-row: 4;
+        align-self: end;
+    }
+
+    #detail-body .card-title {
+        font-size: 1.6rem;
+    }
+
+    /* Los textos legales no se estiran en líneas larguísimas */
+    .legal-content {
+        max-width: 72ch;
+        margin: 0 auto;
+    }
+}
+
+/* Pantallas muy anchas: una columna más de productos */
+@media (min-width: 1500px) {
+    #main-app[style*="display: block"] {
+        max-width: 1560px;
+    }
+
+    header {
+        padding: 1.1rem max(2rem, calc((100% - 1560px) / 2 + 2rem));
+    }
+
+    .grid-productos {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

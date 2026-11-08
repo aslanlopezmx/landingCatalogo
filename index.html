@@ -1,9 +1,13 @@
 <!doctype html>
-<html lang="es" style="scroll-behavior: smooth">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tu Tienda Digital</title>
+    <title>Tienda Digital</title>
+    <meta
+      name="description"
+      content="Tienda digital que se actualiza desde tu celular. Recibe pedidos ya armados por WhatsApp, sin comisiones ni suscripciones."
+    />
 
     <!-- ETIQUETAS OPEN GRAPH PARA FACEBOOK Y WHATSAPP -->
     <meta property="og:type" content="website" />
@@ -11,7 +15,10 @@
       property="og:url"
       content="https://catalogodigital-nine.vercel.app/"
     />
-    <meta property="og:title" content="Tu Tienda Digital" />
+    <meta
+      property="og:title"
+      content="Tienda Digital: recibe tus pedidos por WhatsApp sin comisiones"
+    />
     <meta
       property="og:description"
       content="Tu tienda digital, administrada desde tu celular. Vende más por WhatsApp sin pagar comisiones ni suscripciones."
@@ -38,276 +45,351 @@
       <nav>
         <a href="#demos">Diseños</a>
         <a href="#como-funciona">Cómo Funciona</a>
+        <a href="#testimonios">Clientes</a>
         <a href="#precios">Precios</a>
         <a
-          href="https://wa.me/523312892022?text=Hola,%20quiero%20mi%20cat%C3%A1logo%20digital"
+          href="https://wa.me/523312892022?text=Hola%2C%20quiero%20mi%20tienda%20digital.%20Mi%20negocio%20es%20de%3A%20"
           target="_blank"
+          rel="noopener"
           class="btn-header"
           >Quiero mi tienda hoy</a
         >
       </nav>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section class="hero">
-      <h1>Tu tienda digital, administrada desde <span>tu celular</span></h1>
-      <p>
-        Vende más por WhatsApp sin pagar comisiones ni suscripciones. Sube tus
-        productos fácilmente, comparte tu enlace y recibe los pedidos listos
-        para cobrar directo en tu teléfono.
-      </p>
-      <div class="hero-actions">
-        <a href="#demos" class="btn-primary">Explorar los diseños</a>
-        <a
-          href="https://wa.me/523312892022?text=Hola,%20quiero%20mi%20cat%C3%A1logo%20digital"
-          target="_blank"
-          class="btn-secondary"
-          >Quiero mi tienda hoy</a
-        >
+      <div class="hero-copy">
+        <div class="eyebrow">💬 Sin comisiones · Sin suscripciones</div>
+        <h1>
+          Tu tienda digital recibe pedidos <span>ya armados por WhatsApp</span>,
+          sin comisiones
+        </h1>
+        <p>
+          Cambia un precio desde tu celular y tu tienda se actualiza al
+          instante. Tus clientes eligen, tú recibes el pedido listo para cobrar,
+          y todo el dinero es tuyo.
+        </p>
+        <div class="hero-actions">
+          <a href="#demos" class="btn-primary">Ver los diseños</a>
+          <a
+            href="https://wa.me/523312892022?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20quiero%20ver%20c%C3%B3mo%20quedar%C3%ADa%20mi%20tienda.%20Mi%20negocio%20es%20de%3A%20"
+            target="_blank"
+            rel="noopener"
+            class="btn-secondary"
+            >Hablar por WhatsApp</a
+          >
+        </div>
+        <p class="hero-note">
+          Lista en 24 a 48 horas · Pago único de $1,299 MXN
+        </p>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-chip c1">🛒 Pedido nuevo</div>
+        <div class="hero-phone">
+          <img
+            src="assets/demo/enviarcarrito.gif"
+            alt="Cliente enviando su pedido por WhatsApp desde la tienda"
+            width="290"
+            height="628"
+          />
+        </div>
+        <div class="hero-chip c2">0% de comisión</div>
       </div>
     </section>
 
-    <!-- SHOWCASE SECTION (Galería con las 15 plantillas) -->
+    <!-- FRANJA DE CONFIANZA -->
+    <div class="trust">
+      <div class="trust-inner">
+        <span>Sin comisiones por venta</span>
+        <span>Pago único, sin suscripción</span>
+        <span>Lista en 24 a 48 horas</span>
+        <span>Tus clientes no descargan nada</span>
+        <span>Hasta 1,500 productos</span>
+      </div>
+    </div>
+
+    <!-- GALERÍA DE PLANTILLAS -->
     <section id="demos" class="showcase">
       <div class="section-title">
-        <h2>Galería de Diseños Disponibles</h2>
-        <p>Selecciona una plantilla para probarla en funcionamiento real</p>
+        <h2>Elige el diseño que va con tu marca</h2>
+        <p>Toca una plantilla para probarla funcionando de verdad</p>
       </div>
-      <div class="demos-grid" id="demos-container">
-        <!-- 1. LIQUIDGLASS -->
-        <a
-          href="LiquidGlass/liquidglass.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/LiquidGlass.png&quot;);
-          "
+      <div class="carousel" id="demos-carousel">
+        <button
+          type="button"
+          class="carousel-btn prev"
+          aria-label="Diseño anterior"
         >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Liquid Glass</h3>
-          </div>
-        </a>
-
-        <!-- 2. ORANGE -->
-        <a
-          href="Orange/orange.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Orange.png&quot;);
-          "
+          ‹
+        </button>
+        <div class="demos-grid" id="demos-container" tabindex="0">
+          <a
+            href="LiquidGlass/liquidglass.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/LiquidGlass.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Liquid Glass</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Orange/orange.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Orange.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Orange</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Aurora/aurora.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Aurora.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Aurora</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Banana/banana.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Banana.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Banana</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Blue/blue.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Blue.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Blue</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Bubble/bubble.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Bubble.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Bubble</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Ember/ember.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Ember.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Ember</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Emerald/emerald.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Emerald.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Emerald</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Frost/frost.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Frost.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Frost</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Green/green.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Green.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Green</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Matcha/matcha.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Matcha.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Matcha</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Purple/purple.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Purple.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Purple</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Rose/rose.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Rose.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Rose</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Soft/soft.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Soft.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Soft</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+          <a
+            href="Terracota/terracota.html"
+            target="_blank"
+            rel="noopener"
+            class="demo-card"
+            style="
+              background-image: url(&quot;assets/screenshots/Terracota.png&quot;);
+            "
+          >
+            <div class="demo-card-overlay">
+              <h3 class="demo-title">Terracota</h3>
+              <span class="demo-cta">Ver demo →</span>
+            </div>
+          </a>
+        </div>
+        <button
+          type="button"
+          class="carousel-btn next"
+          aria-label="Diseño siguiente"
         >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Orange</h3>
-          </div>
-        </a>
-
-        <!-- 3. AURORA -->
-        <a
-          href="Aurora/aurora.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Aurora.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Aurora</h3>
-          </div>
-        </a>
-
-        <!-- 4. BANANA -->
-        <a
-          href="Banana/banana.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Banana.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Banana</h3>
-          </div>
-        </a>
-
-        <!-- 5. BLUE -->
-        <a
-          href="Blue/blue.html"
-          target="_blank"
-          class="demo-card"
-          style="background-image: url(&quot;assets/screenshots/Blue.png&quot;)"
-        >
-          <div class="demo-card-overlay"><h3 class="demo-title">Blue</h3></div>
-        </a>
-
-        <!-- 6. BUBBLE -->
-        <a
-          href="Bubble/bubble.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Bubble.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Bubble</h3>
-          </div>
-        </a>
-
-        <!-- 7. EMBER -->
-        <a
-          href="Ember/ember.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Ember.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay"><h3 class="demo-title">Ember</h3></div>
-        </a>
-
-        <!-- 8. EMERALD -->
-        <a
-          href="Emerald/emerald.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Emerald.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Emerald</h3>
-          </div>
-        </a>
-
-        <!-- 9. FROST -->
-        <a
-          href="Frost/frost.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Frost.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay"><h3 class="demo-title">Frost</h3></div>
-        </a>
-
-        <!-- 10. GREEN -->
-        <a
-          href="Green/green.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Green.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay"><h3 class="demo-title">Green</h3></div>
-        </a>
-
-        <!-- 11. MATCHA -->
-        <a
-          href="Matcha/matcha.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Matcha.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Matcha</h3>
-          </div>
-        </a>
-
-        <!-- 12. PURPLE -->
-        <a
-          href="Purple/purple.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Purple.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Purple</h3>
-          </div>
-        </a>
-
-        <!-- 13. ROSE -->
-        <a
-          href="Rose/rose.html"
-          target="_blank"
-          class="demo-card"
-          style="background-image: url(&quot;assets/screenshots/Rose.png&quot;)"
-        >
-          <div class="demo-card-overlay"><h3 class="demo-title">Rose</h3></div>
-        </a>
-
-        <!-- 14. SOFT -->
-        <a
-          href="Soft/soft.html"
-          target="_blank"
-          class="demo-card"
-          style="background-image: url(&quot;assets/screenshots/Soft.png&quot;)"
-        >
-          <div class="demo-card-overlay"><h3 class="demo-title">Soft</h3></div>
-        </a>
-
-        <!-- 15. TERRACOTA -->
-        <a
-          href="Terracota/terracota.html"
-          target="_blank"
-          class="demo-card"
-          style="
-            background-image: url(&quot;assets/screenshots/Terracota.png&quot;);
-          "
-        >
-          <div class="demo-card-overlay">
-            <h3 class="demo-title">Terracota</h3>
-          </div>
-        </a>
+          ›
+        </button>
       </div>
+      <div class="carousel-dots" id="demos-dots" aria-hidden="true"></div>
     </section>
 
     <!-- CÓMO FUNCIONA -->
-    <section id="como-funciona" class="benefits">
-      <div class="section-title">
-        <h2>¿Cómo funciona?</h2>
-        <p>Tu sistema de ventas listo en 3 simples pasos</p>
-      </div>
-      <div class="benefits-grid">
-        <div class="benefit-card">
-          <div class="benefit-icon">🎨</div>
-          <h3>1. Elige tu estilo</h3>
-          <p>
-            Selecciona la plantilla de nuestra galería que mejor refleje la
-            identidad visual de tu marca.
-          </p>
+    <div class="band">
+      <section id="como-funciona" class="benefits">
+        <div class="section-title">
+          <h2>¿Cómo funciona?</h2>
+          <p>Tu tienda vendiendo en 3 simples pasos</p>
         </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🔗</div>
-          <h3>2. Sube tus productos</h3>
-          <p>
-            Actualiza nombres, fotos y precios desde una tabla súper sencilla,
-            sin necesidad de saber programar.
-          </p>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">🎨</div>
+            <h3>1. Elige tu estilo</h3>
+            <p>
+              Selecciona la plantilla de nuestra galería que mejor refleje la
+              identidad visual de tu marca. Nosotros la adaptamos con tus
+              colores y tu logotipo.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🔗</div>
+            <h3>2. Sube tus productos</h3>
+            <p>
+              Actualiza nombres, fotos y precios desde una tabla súper sencilla,
+              sin necesidad de saber programar. Te enseñamos cómo.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🚀</div>
+            <h3>3. Empieza a vender</h3>
+            <p>
+              Comparte tu enlace y recibe mensajes de WhatsApp con el pedido
+              exacto de tu cliente, listo para cerrar la venta.
+            </p>
+          </div>
         </div>
-        <div class="benefit-card">
-          <div class="benefit-icon">🚀</div>
-          <h3>3. Empieza a vender</h3>
-          <p>
-            Comparte tu enlace y recibe mensajes de WhatsApp con el pedido
-            exacto de tu cliente, listo para cerrar la venta.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- SECCIÓN DE DEMOS VISUALES (GIFS) -->
     <section class="gifs-section">
       <div class="section-title">
-        <h2>Móvil, Rápido y Visual</h2>
+        <h2>Así de fácil se administra y se vende</h2>
         <p>
-          Observa lo fácil que es actualizar tu inventario y recibir pedidos
+          Cambias un precio en tu hoja de cálculo y tu cliente ya lo ve; él arma
+          su pedido y te llega por WhatsApp
         </p>
       </div>
       <div class="gifs-grid">
@@ -315,22 +397,123 @@
           <div class="gif-container">
             <img
               src="assets/demo/cambiodeprecio.gif"
-              alt="Actualizar Tienda en Google Sheets"
+              alt="Actualizar la tienda desde Google Sheets"
+              loading="lazy"
+              width="300"
+              height="650"
             />
           </div>
-          <div class="gif-caption">Actualiza desde Google Sheets</div>
+          <div class="gif-caption">
+            1. Cambias el precio en Google Sheets
+            <small>Se actualiza solo en tu tienda</small>
+          </div>
         </div>
         <div>
           <div class="gif-container">
             <img
               src="./assets/demo/enviarcarrito.gif"
               alt="Cliente realizando pedido por WhatsApp"
+              loading="lazy"
+              width="300"
+              height="650"
             />
           </div>
-          <div class="gif-caption">Recibe pedidos directo en WhatsApp</div>
+          <div class="gif-caption">
+            2. Tu cliente te envía el pedido
+            <small>Llega a tu WhatsApp, listo para cobrar</small>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- TESTIMONIOS -->
+    <div class="band">
+      <section id="testimonios" class="showcase">
+        <div class="section-title">
+          <h2>Lo que dicen nuestros clientes</h2>
+          <p>Negocios que ya reciben sus pedidos directo en WhatsApp</p>
+        </div>
+        <!-- TIP: reemplaza las iniciales por la foto o logo real de cada cliente
+             y enlaza su tienda en funcionamiento para ganar más confianza. -->
+        <div class="benefits-grid">
+          <div class="benefit-card testimonial">
+            <p>
+              "Antes perdía 2 horas diarias contestando '¿qué colores tienes?'.
+              Ahora solo les mando el link de mi tienda y me llega el pedido
+              hecho. Y lo mejor es que no pago comisiones."
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">S</div>
+              <div><strong>Sofía R.</strong><span>Tienda de Ropa</span></div>
+            </div>
+          </div>
+          <div class="benefit-card testimonial">
+            <p>
+              "Lo configuramos en un día y mis ventas por WhatsApp aumentaron.
+              Lo mejor es que puedo cambiar precios desde el celular cuando
+              estoy en la bodega."
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">C</div>
+              <div><strong>Carlos M.</strong><span>Accesorios Tech</span></div>
+            </div>
+          </div>
+          <div class="benefit-card testimonial">
+            <p>
+              "Mis clientes aman lo rápido que carga y lo limpio que se ve. Ya
+              no tengo que andar enviando PDFs pesados que nadie lee."
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">M</div>
+              <div>
+                <strong>Mariana L.</strong><span>Repostería Artesanal</span>
+              </div>
+            </div>
+          </div>
+          <div class="benefit-card testimonial">
+            <p>
+              "La atención y personalización fueron increíbles. Dejó mi tienda
+              exactamente con los colores de mi marca sin complicaciones
+              técnicas."
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">A</div>
+              <div>
+                <strong>Alejandro G.</strong><span>Calzado y Joyería</span>
+              </div>
+            </div>
+          </div>
+          <div class="benefit-card testimonial">
+            <p>
+              "Me encanta lo profesional que se ve mi tienda en los celulares de
+              mis clientas. Los pedidos llegan clarísimos por WhatsApp y me
+              ahorra muchísimo tiempo."
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">D</div>
+              <div>
+                <strong>Daniela P.</strong
+                ><span>Cosméticos y Cuidado Personal</span>
+              </div>
+            </div>
+          </div>
+          <div class="benefit-card testimonial">
+            <p>
+              "Implementar esta tienda digital fue facilísimo. Mis clientes
+              entran desde Instagram, ven los productos y me mandan el pedido
+              directo por WhatsApp sin enredos."
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">P</div>
+              <div>
+                <strong>Patricia V.</strong
+                ><span>Regalos y Arreglos Florales</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- BENEFITS SECTION -->
     <section id="beneficios" class="benefits">
@@ -356,7 +539,7 @@
           <h3>El dinero es 100% tuyo</h3>
           <p>
             A diferencia de otras plataformas, no te cobramos comisiones por
-            venta. El cliente elige en tu catálogo y te manda un mensaje directo
+            venta. El cliente elige en tu tienda y te manda un mensaje directo
             para pagarte a ti.
           </p>
         </div>
@@ -365,7 +548,7 @@
           <h3>Nunca pierdas una venta</h3>
           <p>
             Si tu cliente cierra la página por accidente o se distrae, su
-            carrito de compras se queda guardado. Además, tu catálogo cargará
+            carrito de compras se queda guardado. Además, tu tienda cargará
             rapidísimo en cualquier celular.
           </p>
         </div>
@@ -373,171 +556,135 @@
     </section>
 
     <!-- PRECIOS -->
-    <section id="precios" class="benefits" style="background: var(--bg-card)">
-      <div class="section-title">
-        <h2>Planes de Inversión</h2>
-        <p>Escala tus ventas sin pagar comisiones o suscripciones</p>
-      </div>
-      <div class="benefits-grid">
-        <div
-          class="benefit-card"
-          style="text-align: center; border-color: var(--accent)"
-        >
-          <h3 style="color: var(--accent); font-size: 1.5rem">Pago Único</h3>
-          <div
-            style="
-              margin: 1rem 0;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              gap: 0.3rem;
-            "
-          >
-            <span
-              style="
-                font-size: 1.1rem;
-                color: var(--text-muted);
-                text-decoration: line-through;
-              "
-              >$4,499 MXN</span
-            >
-            <span
-              style="
-                font-size: 2.2rem;
-                font-weight: 800;
-                color: var(--text-main);
-              "
-              >$3,299 MXN</span
-            >
-          </div>
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 0.5rem;
-              margin-bottom: 1rem;
-            "
-          >
-            <span
-              style="
-                display: inline-block;
-                background: rgba(14, 165, 233, 0.1);
-                color: var(--accent);
-                padding: 0.2rem 0.8rem;
-                border-radius: 20px;
-                font-size: 0.85rem;
-                font-weight: 700;
-              "
-              >Precio de Lanzamiento</span
-            >
-            <span
-              style="
-                font-size: 0.9rem;
-                color: var(--text-muted);
-                font-weight: 600;
-              "
-              >💳 3 y 6 meses sin intereses</span
-            >
-          </div>
-          <ul
-            style="
-              text-align: left;
-              list-style: none;
-              padding: 0;
-              margin-bottom: 2rem;
-              color: var(--text-muted);
-              line-height: 2;
-            "
-          >
-            <li>✅ Instalación completa de tu plantilla</li>
-            <li>✅ Vinculación con tu inventario digital</li>
-            <li>✅ Botón directo a tu WhatsApp</li>
-            <li>✅ Diseño rápido y optimizado para celular</li>
-            <li>
-              ✨ <strong>Personalización a la medida:</strong> Adaptamos colores
-              e imágenes de la plantilla a tu identidad visual.
-            </li>
-            <li>✅ Capacitación para el uso del sistema</li>
-            <li>✅ Atención y soporte post venta</li>
-          </ul>
-          <a
-            href="https://wa.me/523312892022?text=Hola,%20quiero%20mi%20cat%C3%A1logo%20digital"
-            target="_blank"
-            class="btn-primary"
-            style="display: block"
-            >Quiero mi tienda hoy</a
-          >
+    <div class="band">
+      <section id="precios" class="benefits">
+        <div class="section-title">
+          <h2>Un solo pago. Sin mensualidades.</h2>
+          <p>Escala tus ventas sin pagar comisiones ni suscripciones</p>
         </div>
-      </div>
-    </section>
+        <div class="pricing-wrap">
+          <div
+            class="benefit-card"
+            style="text-align: center; border-color: var(--accent)"
+          >
+            <h3 style="color: var(--accent); font-size: 1.5rem">Pago Único</h3>
+            <div
+              style="
+                margin: 1rem 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.3rem;
+              "
+            >
+              <span
+                style="
+                  font-size: 1.1rem;
+                  color: var(--text-muted);
+                  text-decoration: line-through;
+                "
+                >$2,299 MXN</span
+              >
+              <span
+                style="
+                  font-size: 2.6rem;
+                  font-weight: 800;
+                  color: var(--text-main);
+                "
+                >$1,299 MXN</span
+              >
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 1.4rem;
+              "
+            >
+              <span
+                style="
+                  display: inline-block;
+                  background: rgba(14, 165, 233, 0.1);
+                  color: var(--accent-hover);
+                  padding: 0.2rem 0.8rem;
+                  border-radius: 20px;
+                  font-size: 0.85rem;
+                  font-weight: 700;
+                "
+                >Oferta de Noviembre</span
+              >
+              <span
+                style="
+                  font-size: 0.9rem;
+                  color: var(--text-muted);
+                  font-weight: 600;
+                "
+                >💳 3 y 6 meses sin intereses</span
+              >
+            </div>
 
-    <!-- TESTIMONIOS -->
-    <section id="testimonios" class="showcase">
-      <div class="section-title">
-        <h2>Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="benefits-grid">
-        <div class="benefit-card">
-          <p style="font-style: italic">
-            "Antes perdía 2 horas diarias contestando '¿qué colores tienes?'.
-            Ahora solo les mando el link de mi catalogo y me llega el pedido
-            hecho. Y lo mejor es que no pago comisiones."
-          </p>
-          <h4 style="margin-top: 1rem; color: var(--text-main)">
-            — Sofía R., Tienda de Ropa
-          </h4>
+            <div class="compare">
+              <div class="them">
+                <b>Otras plataformas</b>
+                Mensualidad + comisión por cada venta
+              </div>
+              <div class="us">
+                <b>Con nosotros</b>
+                Un solo pago y 0% de comisión
+              </div>
+            </div>
+
+            <ul
+              style="
+                text-align: left;
+                list-style: none;
+                padding: 0;
+                margin-bottom: 1.6rem;
+                color: var(--text-muted);
+                line-height: 2;
+              "
+            >
+              <li>✅ Tu plantilla instalada y lista para vender</li>
+              <li>
+                ✅ Tu inventario conectado a Google Sheets: cambias un precio y
+                se actualiza
+              </li>
+              <li>✅ Botón directo a tu WhatsApp con el pedido ya armado</li>
+              <li>✅ Carga rápido en cualquier celular</li>
+              <li>
+                ✨ <strong>Personalización a la medida:</strong> Adaptamos
+                colores e imágenes de la plantilla a tu identidad visual.
+              </li>
+              <li>✅ Te enseñamos a administrarlo tú mismo</li>
+              <li>✅ Atención y soporte post venta</li>
+            </ul>
+
+            <div class="guarantee">
+              <span>🛡️</span>
+              <span>
+                <strong>Garantía de implementación:</strong> tienes 15 días
+                naturales después de la entrega para reportar cualquier falla
+                nuestra; la corregimos sin costo adicional.
+              </span>
+            </div>
+
+            <a
+              href="https://wa.me/523312892022?text=Hola%2C%20quiero%20mi%20tienda%20digital%20con%20el%20pago%20%C3%BAnico.%20La%20plantilla%20que%20me%20gusta%20es%3A%20"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary"
+              style="display: block"
+              >Quiero mi tienda hoy</a
+            >
+            <p class="price-note">
+              Sin compromiso: escríbenos y resolvemos tus dudas por WhatsApp.
+            </p>
+          </div>
         </div>
-        <div class="benefit-card">
-          <p style="font-style: italic">
-            "Lo configuramos en un día y mis ventas por WhatsApp aumentaron. Lo
-            mejor es que puedo cambiar precios desde el celular cuando estoy en
-            la bodega."
-          </p>
-          <h4 style="margin-top: 1rem; color: var(--text-main)">
-            — Carlos M., Accesorios Tech
-          </h4>
-        </div>
-        <div class="benefit-card">
-          <p style="font-style: italic">
-            "Mis clientes aman lo rápido que carga y lo limpio que se ve. Ya no
-            tengo que andar enviando PDFs pesados que nadie lee."
-          </p>
-          <h4 style="margin-top: 1rem; color: var(--text-main)">
-            — Mariana L., Repostería Artesanal
-          </h4>
-        </div>
-        <div class="benefit-card">
-          <p style="font-style: italic">
-            "La atención y personalización fueron increíbles. Dejó mi catálogo
-            exactamente con los colores de mi marca sin complicaciones
-            técnicas."
-          </p>
-          <h4 style="margin-top: 1rem; color: var(--text-main)">
-            — Alejandro G., Calzado y Joyería
-          </h4>
-        </div>
-        <div class="benefit-card">
-          <p style="font-style: italic">
-            "Me encanta lo profesional que se ve mi tienda en los celulares de
-            mis clientas. Los pedidos llegan clarísimos por WhatsApp y me ahorra
-            muchísimo tiempo."
-          </p>
-          <h4 style="margin-top: 1rem; color: var(--text-main)">
-            — Daniela P., Cosméticos y Cuidado Personal
-          </h4>
-        </div>
-        <div class="benefit-card">
-          <p style="font-style: italic">
-            "Implementar esta tienda digital fue facilísimo. Mis clientes entran
-            desde Instagram, ven los productos y me mandan el pedido directo por
-            WhatsApp sin enredos."
-          </p>
-          <h4 style="margin-top: 1rem; color: var(--text-main)">
-            — Patricia V., Regalos y Arreglos Florales
-          </h4>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- PREGUNTAS FRECUENTES -->
     <section id="faq" class="benefits">
@@ -545,6 +692,34 @@
         <h2>Preguntas Frecuentes</h2>
       </div>
       <div style="max-width: 800px; margin: 0 auto">
+        <details class="faq-card">
+          <summary>¿Cuánto tiempo tarda en estar lista mi tienda?</summary>
+          <div class="faq-answer">
+            Una vez definidos los detalles y la identidad visual de tu marca,
+            entregamos tu tienda configurada en un plazo máximo de 24 a 48
+            horas. Te proporcionamos la herramienta y la capacitación para que
+            tú mismo cargues, administres y actualices tus productos de forma
+            sencilla.
+          </div>
+        </details>
+        <details class="faq-card">
+          <summary>¿Hay costos después de pagar?</summary>
+          <div class="faq-answer">
+            El pago es único: no hay mensualidades ni comisiones por venta. Tu
+            tienda incluye un enlace web listo para usar sin costo adicional, y
+            cargar o actualizar tus productos lo haces tú sin pagar nada extra.
+            Solo si después de la entrega y la capacitación pides cambios
+            estructurales o un rediseño, se cotizan por hora o proyecto.
+          </div>
+        </details>
+        <details class="faq-card">
+          <summary>¿Cómo recibo los pagos de mis clientes?</summary>
+          <div class="faq-answer">
+            Tu tienda no cobra en línea ni se queda con comisión. Tu cliente
+            elige sus productos, te envía el pedido por WhatsApp y tú le cobras
+            directamente por el medio que ya usas. El dinero es 100% tuyo.
+          </div>
+        </details>
         <details class="faq-card">
           <summary>¿Puedo pedir un diseño personalizado?</summary>
           <div class="faq-answer">
@@ -554,11 +729,10 @@
             velocidad y rendimiento.
           </div>
         </details>
-
         <details class="faq-card">
           <summary>
             ¿Mis clientes necesitan descargar alguna aplicación para ver mi
-            catálogo?
+            tienda?
           </summary>
           <div class="faq-answer">
             No. Tus clientes pueden acceder directamente desde cualquier
@@ -566,31 +740,18 @@
             clic en tu enlace, sin descargas previas.
           </div>
         </details>
-
-        <details class="faq-card">
-          <summary>¿Cuánto tiempo tarda en estar listo mi catálogo?</summary>
-          <div class="faq-answer">
-            Una vez definidos los detalles y la identidad visual de tu marca,
-            entregamos tu sistema de catálogo configurado en un plazo máximo de
-            24 a 48 horas. Te proporcionamos la herramienta y la capacitación
-            para que tú mismo cargues, administres y actualices tus productos de
-            forma sencilla.
-          </div>
-        </details>
-
         <details class="faq-card">
           <summary>
             ¿Puedo utilizar mi propio dominio (ej. www.tunegocio.com)?
           </summary>
           <div class="faq-answer">
-            Sí. Podemos conectar tu catálogo directamente a tu dominio propio
-            para que tus clientes accedan con una dirección profesional y
+            Sí. Podemos conectar tu tienda directamente a tu dominio propio para
+            que tus clientes accedan con una dirección profesional y
             completamente personalizada. Pero si no tienes un dominio no
-            importa: tu catálogo incluye un enlace web listo para usar sin
-            ningún costo adicional.
+            importa: tu tienda incluye un enlace web listo para usar sin ningún
+            costo adicional.
           </div>
         </details>
-
         <details class="faq-card">
           <summary>
             ¿Hay algún límite en la cantidad de productos que puedo agregar?
@@ -601,28 +762,25 @@
             soportar hasta 1500 productos de forma fluida.
           </div>
         </details>
-
         <details class="faq-card">
-          <summary>¿Cómo se actualiza el catálogo?</summary>
+          <summary>¿Cómo se actualiza la tienda?</summary>
           <div class="faq-answer">
             Utilizamos Google Sheets. Te conectamos una hoja de cálculo
             exclusiva para ti. Solo llenas las filas con tu producto, detalles,
             precio y foto, ¡y la página web se actualiza sola!
           </div>
         </details>
-
         <details class="faq-card">
           <summary>
             ¿Qué pasa si un cliente pierde su conexión de internet mientras
             compra?
           </summary>
           <div class="faq-answer">
-            Tu catálogo cuenta con tecnología de almacenamiento local (Local
+            Tu tienda cuenta con tecnología de almacenamiento local (Local
             Storage). Sus productos se quedan guardados en su carrito aunque
             cierre la pestaña o se le vaya el internet.
           </div>
         </details>
-
         <details class="faq-card">
           <summary>¿El sistema soporta tallas, colores o variantes?</summary>
           <div class="faq-answer">
@@ -632,6 +790,22 @@
           </div>
         </details>
       </div>
+    </section>
+
+    <!-- LLAMADO FINAL -->
+    <section class="final-cta">
+      <h2>¿Listo para recibir pedidos sin pagar comisiones?</h2>
+      <p>
+        Escríbenos por WhatsApp, cuéntanos de tu negocio y te mostramos cómo
+        quedaría tu tienda.
+      </p>
+      <a
+        href="https://wa.me/523312892022?text=Hola%2C%20quiero%20mi%20tienda%20digital.%20Mi%20negocio%20es%20de%3A%20"
+        target="_blank"
+        rel="noopener"
+        class="btn-white"
+        >Quiero mi tienda hoy</a
+      >
     </section>
 
     <!-- FOOTER CON LEGALES -->
@@ -675,5 +849,23 @@
       </div>
       <p>&copy; 2026 Impulso Digital. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a
+      href="https://wa.me/523312892022?text=Hola%2C%20quiero%20mi%20tienda%20digital.%20Mi%20negocio%20es%20de%3A%20"
+      target="_blank"
+      rel="noopener"
+      class="wa-float"
+      aria-label="Escríbenos por WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        />
+      </svg>
+      <span>Escríbenos</span>
+    </a>
+
+    <script src="script.js"></script>
   </body>
 </html>
