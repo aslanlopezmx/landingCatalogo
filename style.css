@@ -1436,6 +1436,18 @@ footer {
     }
 }
 
+/* ---------- Corrección para centrar la píldora en móvil ---------- */
+@media (max-width: 767px) {
+    .eyebrow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     *,
