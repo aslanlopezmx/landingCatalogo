@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="es" data-design="terracota" data-negocio="todos">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Tienda</title>
+
+    <!-- Preconexiones para las imágenes externas de los diseños -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="preconnect" href="https://plus.unsplash.com" crossorigin />
+
+    <!-- CSS del diseño activo (unified.js lo cambia dinámicamente) -->
+    <link id="design-link" rel="stylesheet" href="designs/terracota.css" />
+
+    <!-- CSS del panel de personalización (siempre por encima) -->
+    <link rel="stylesheet" href="designs/panel.css" />
+  </head>
+  <body>
+    <!-- ============================================================ -->
+    <!-- APLICACIÓN PRINCIPAL (sin splash)                            -->
+    <!-- display:block inline para que el @media de los 15 CSS        -->
+    <!-- active el layout de escritorio correctamente                 -->
+    <!-- ============================================================ -->
+    <div id="main-app" style="display: block">
+      <!-- Cabecera fija -->
+      <header>
+        <div class="logo" onclick="scrollToTop()">Mi Tienda</div>
+        <button class="cart-btn" onclick="abrirCarrito()">
+          🛒 <span id="cart-count">0</span>
+        </button>
+      </header>
+
+      <!-- Buscador -->
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Buscar productos..."
+        />
+      </div>
+
+      <!-- Banner genérico (fijo para todos los diseños y negocios) -->
+      <div class="hero-banner">
+        <h2>Descubre nuestros productos</h2>
+        <p>Encuentra lo que buscas en un solo lugar.</p>
+      </div>
+
+      <!-- Filtros y ordenamiento -->
+      <div class="filter-container">
+        <button class="btn-main-filter" onclick="toggleFilterMenu(event)">
+          ⚙️ Filtrar y Ordenar
+        </button>
+        <div id="filter-dropdown" class="filter-dropdown-menu">
+          <div class="filter-section-title">Ordenar por Precio</div>
+          <div
+            class="filter-option"
+            onclick="aplicarOrdenamiento('menor-mayor')"
+          >
+            Precio: Menor a Mayor
+          </div>
+          <div
+            class="filter-option"
+            onclick="aplicarOrdenamiento('mayor-menor')"
+          >
+            Precio: Mayor a Menor
+          </div>
+          <div class="filter-divider"></div>
+          <div class="filter-section-title">Filtrar por Categoría</div>
+          <div id="dynamic-categories-list"></div>
+        </div>
+      </div>
+
+      <!-- Catálogo (lo llena unified.js) -->
+      <main id="catalogo" class="grid-productos">
+        <div class="loading-container">
+          <div class="spinner"></div>
+          <p>Cargando catálogo...</p>
+        </div>
+      </main>
+
+      <!-- Navegación inferior -->
+      <nav class="bottom-nav">
+        <button class="nav-btn" onclick="abrirPoliticas()">
+          Políticas de Privacidad
+        </button>
+        <button class="nav-btn" onclick="abrirTerminos()">
+          Términos y Condiciones
+        </button>
+      </nav>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MODAL DEL CARRITO                                            -->
+    <!-- ============================================================ -->
+    <div id="cart-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Tu Carrito de Compras</h2>
+          <button class="close-modal" onclick="cerrarCarrito()">✕</button>
+        </div>
+        <div id="cart-items-container" class="cart-items-list"></div>
+        <div class="cart-fixed-footer">
+          <div class="cart-total">
+            <span>Total a pagar:</span>
+            <span id="cart-total-price">$0</span>
+          </div>
+          <form
+            id="order-form"
+            class="order-form"
+            onsubmit="enviarPedido(event)"
+          >
+            <h3>Datos de Contacto</h3>
+            <input
+              type="text"
+              id="nombre-cliente"
+              placeholder="Tu nombre completo"
+              required
+              class="form-input"
+            />
+            <input
+              type="tel"
+              id="telefono-cliente"
+              placeholder="Teléfono de contacto"
+              required
+              class="form-input"
+            />
+            <input
+              type="email"
+              id="correo-cliente"
+              placeholder="Correo electrónico"
+              required
+              class="form-input"
+            />
+            <button type="submit" class="btn-submit-order">
+              Enviar Pedido por WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MODAL DE DETALLES / LEGALES                                  -->
+    <!-- ============================================================ -->
+    <div id="details-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="detail-title">Información del Producto</h2>
+          <button class="close-modal" onclick="cerrarDetalles()">✕</button>
+        </div>
+        <div id="detail-body" class="detail-body-content"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- PANEL DE PERSONALIZACIÓN (2 variables)                       -->
+    <!-- ============================================================ -->
+    <button
+      class="btn-personalizar"
+      onclick="togglePanel()"
+      aria-label="Personalizar tienda"
+    >
+      <span class="pn-emoji">🎨</span>
+      <span>Personalizar</span>
+    </button>
+
+    <aside
+      id="design-panel"
+      class="design-panel"
+      aria-label="Panel de personalización"
+      aria-hidden="true"
+    >
+      <div class="panel-header">
+        <div>
+          <h3 class="panel-title">Personalizar tienda</h3>
+          <p class="panel-sub">Diseño y tipo de negocio</p>
+        </div>
+        <button
+          class="panel-close"
+          onclick="togglePanel()"
+          aria-label="Cerrar panel"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="panel-body customizer-body">
+        <!-- Sección 1: DISEÑO -->
+        <div class="customizer-section">
+          <button
+            type="button"
+            class="acc-header"
+            onclick="alternarSeccion(this)"
+          >
+            <span class="acc-icono">🎨</span>
+            <span class="acc-texto">
+              <span class="acc-largo">Diseño</span>
+              <span class="acc-corto">Diseño</span>
+            </span>
+            <span class="acc-chevron">▾</span>
+          </button>
+          <div class="acc-content">
+            <div class="panel-section-title">Elige el estilo</div>
+            <div class="panel-designs" id="panel-designs">
+              <!-- (Aquí van todos tus botones de diseño: terracota, soft, rose, etc...) -->
+              <button
+                class="panel-design-btn"
+                data-design="terracota"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Terracota</span>
+              </button>
+              <button class="panel-design-btn" data-design="soft" type="button">
+                <span class="panel-swatch"></span><span>Soft</span>
+              </button>
+              <button class="panel-design-btn" data-design="rose" type="button">
+                <span class="panel-swatch"></span><span>Rose</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="purple"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Purple</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="orange"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Orange</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="matcha"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Matcha</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="liquidglass"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Liquid Glass</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="green"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Green</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="frost"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Frost</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="emerald"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Emerald</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="ember"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Ember</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="bubble"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Bubble</span>
+              </button>
+              <button class="panel-design-btn" data-design="blue" type="button">
+                <span class="panel-swatch"></span><span>Blue</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="banana"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Banana</span>
+              </button>
+              <button
+                class="panel-design-btn"
+                data-design="aurora"
+                type="button"
+              >
+                <span class="panel-swatch"></span><span>Aurora</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección 2: TIPO DE NEGOCIO -->
+        <div class="customizer-section">
+          <button
+            type="button"
+            class="acc-header"
+            onclick="alternarSeccion(this)"
+          >
+            <span class="acc-icono">🏪</span>
+            <span class="acc-texto">
+              <span class="acc-largo">Tipo de negocio</span>
+              <span class="acc-corto">Negocio</span>
+            </span>
+            <span class="acc-chevron">▾</span>
+          </button>
+          <div class="acc-content">
+            <div class="panel-section-title">Elige el negocio</div>
+            <div class="panel-negocios" id="panel-negocios">
+              <!-- (Aquí van todos tus botones de negocio) -->
+              <button
+                class="panel-negocio-btn"
+                data-negocio="todos"
+                type="button"
+              >
+                <span class="pn-ico">🛍️</span
+                ><span class="pn-label">Todos</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="celulares"
+                type="button"
+              >
+                <span class="pn-ico">📱</span
+                ><span class="pn-label">Celulares</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="computadoras"
+                type="button"
+              >
+                <span class="pn-ico">💻</span
+                ><span class="pn-label">Computadoras</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="joyeria"
+                type="button"
+              >
+                <span class="pn-ico">💍</span
+                ><span class="pn-label">Joyería</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="ropa"
+                type="button"
+              >
+                <span class="pn-ico">👕</span><span class="pn-label">Ropa</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="calzado"
+                type="button"
+              >
+                <span class="pn-ico">👟</span
+                ><span class="pn-label">Calzado</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="belleza"
+                type="button"
+              >
+                <span class="pn-ico">💄</span
+                ><span class="pn-label">Belleza</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="plantas"
+                type="button"
+              >
+                <span class="pn-ico">🌿</span
+                ><span class="pn-label">Plantas</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="mascotas"
+                type="button"
+              >
+                <span class="pn-ico">🐾</span
+                ><span class="pn-label">Mascotas</span>
+              </button>
+              <button
+                class="panel-negocio-btn"
+                data-negocio="hogar"
+                type="button"
+              >
+                <span class="pn-ico">🏠</span
+                ><span class="pn-label">Hogar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón extra solo para móvil (Cerrar) -->
+        <button
+          type="button"
+          class="dock-cerrar"
+          onclick="togglePanel()"
+          aria-label="Cerrar personalización"
+        >
+          <span class="acc-icono">✕</span>
+          <span class="acc-corto">Cerrar</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Lógica unificada (reemplaza a los 15 *.js) -->
+    <script src="unified.js"></script>
+  </body>
+</html>
