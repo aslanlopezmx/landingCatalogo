@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Tienda</title>
 
-    <!-- Preconexiones para las imágenes externas de los diseños -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="preconnect" href="https://plus.unsplash.com" crossorigin />
 
@@ -16,13 +15,7 @@
     <link rel="stylesheet" href="designs/panel.css" />
   </head>
   <body>
-    <!-- ============================================================ -->
-    <!-- APLICACIÓN PRINCIPAL (sin splash)                            -->
-    <!-- display:block inline para que el @media de los 15 CSS        -->
-    <!-- active el layout de escritorio correctamente                 -->
-    <!-- ============================================================ -->
     <div id="main-app" style="display: block">
-      <!-- Cabecera fija -->
       <header>
         <div class="logo" onclick="scrollToTop()">Mi Tienda</div>
         <button class="cart-btn" onclick="abrirCarrito()">
@@ -30,7 +23,6 @@
         </button>
       </header>
 
-      <!-- Buscador -->
       <div class="search-container">
         <input
           type="text"
@@ -39,13 +31,11 @@
         />
       </div>
 
-      <!-- Banner genérico (fijo para todos los diseños y negocios) -->
       <div class="hero-banner">
         <h2>Descubre nuestros productos</h2>
         <p>Encuentra lo que buscas en un solo lugar.</p>
       </div>
 
-      <!-- Filtros y ordenamiento -->
       <div class="filter-container">
         <button class="btn-main-filter" onclick="toggleFilterMenu(event)">
           ⚙️ Filtrar y Ordenar
@@ -64,13 +54,9 @@
           >
             Precio: Mayor a Menor
           </div>
-          <div class="filter-divider"></div>
-          <div class="filter-section-title">Filtrar por Categoría</div>
-          <div id="dynamic-categories-list"></div>
         </div>
       </div>
 
-      <!-- Catálogo (lo llena unified.js) -->
       <main id="catalogo" class="grid-productos">
         <div class="loading-container">
           <div class="spinner"></div>
@@ -78,7 +64,6 @@
         </div>
       </main>
 
-      <!-- Navegación inferior -->
       <nav class="bottom-nav">
         <button class="nav-btn" onclick="abrirPoliticas()">
           Políticas de Privacidad
@@ -89,9 +74,7 @@
       </nav>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- MODAL DEL CARRITO                                            -->
-    <!-- ============================================================ -->
+    <!-- MODALES -->
     <div id="cart-modal" class="modal-overlay">
       <div class="modal-content">
         <div class="modal-header">
@@ -139,9 +122,6 @@
       </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- MODAL DE DETALLES / LEGALES                                  -->
-    <!-- ============================================================ -->
     <div id="details-modal" class="modal-overlay">
       <div class="modal-content">
         <div class="modal-header">
@@ -152,9 +132,7 @@
       </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- PANEL DE PERSONALIZACIÓN (2 variables)                       -->
-    <!-- ============================================================ -->
+    <!-- PANEL DE PERSONALIZACIÓN -->
     <button
       class="btn-personalizar"
       onclick="togglePanel()"
@@ -173,7 +151,7 @@
       <div class="panel-header">
         <div>
           <h3 class="panel-title">Personalizar tienda</h3>
-          <p class="panel-sub">Diseño y tipo de negocio</p>
+          <p class="panel-sub">Diseño, negocio y tarjetas</p>
         </div>
         <button
           class="panel-close"
@@ -185,7 +163,7 @@
       </div>
 
       <div class="panel-body customizer-body">
-        <!-- Sección 1: DISEÑO -->
+        <!-- 1. DISEÑO -->
         <div class="customizer-section">
           <button
             type="button"
@@ -193,16 +171,15 @@
             onclick="alternarSeccion(this)"
           >
             <span class="acc-icono">🎨</span>
-            <span class="acc-texto">
-              <span class="acc-largo">Diseño</span>
-              <span class="acc-corto">Diseño</span>
-            </span>
+            <span class="acc-texto"
+              ><span class="acc-largo">Diseño</span
+              ><span class="acc-corto">Diseño</span></span
+            >
             <span class="acc-chevron">▾</span>
           </button>
           <div class="acc-content">
             <div class="panel-section-title">Elige el estilo</div>
             <div class="panel-designs" id="panel-designs">
-              <!-- (Aquí van todos tus botones de diseño: terracota, soft, rose, etc...) -->
               <button
                 class="panel-design-btn"
                 data-design="terracota"
@@ -300,7 +277,7 @@
           </div>
         </div>
 
-        <!-- Sección 2: TIPO DE NEGOCIO -->
+        <!-- 2. NEGOCIO -->
         <div class="customizer-section">
           <button
             type="button"
@@ -308,16 +285,15 @@
             onclick="alternarSeccion(this)"
           >
             <span class="acc-icono">🏪</span>
-            <span class="acc-texto">
-              <span class="acc-largo">Tipo de negocio</span>
-              <span class="acc-corto">Negocio</span>
-            </span>
+            <span class="acc-texto"
+              ><span class="acc-largo">Tipo de negocio</span
+              ><span class="acc-corto">Negocio</span></span
+            >
             <span class="acc-chevron">▾</span>
           </button>
           <div class="acc-content">
             <div class="panel-section-title">Elige el negocio</div>
             <div class="panel-negocios" id="panel-negocios">
-              <!-- (Aquí van todos tus botones de negocio) -->
               <button
                 class="panel-negocio-btn"
                 data-negocio="todos"
@@ -401,7 +377,6 @@
           </div>
         </div>
 
-        <!-- Botón extra solo para móvil (Cerrar) -->
         <button
           type="button"
           class="dock-cerrar"
@@ -414,7 +389,6 @@
       </div>
     </aside>
 
-    <!-- Lógica unificada (reemplaza a los 15 *.js) -->
     <script src="unified.js"></script>
   </body>
 </html>

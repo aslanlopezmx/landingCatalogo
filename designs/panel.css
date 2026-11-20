@@ -1,5 +1,5 @@
 /* ============================================================ */
-/* PANEL DE PERSONALIZACIÓN — Ajustado para 3 columnas y dock   */
+/* PANEL DE PERSONALIZACIÓN — Acordeón y Estilos Corregidos     */
 /* ============================================================ */
 
 .btn-personalizar,
@@ -142,46 +142,84 @@ body.panel-open .btn-personalizar {
 .customizer-body {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 12px;
 }
 
-/* Secciones */
+/* Secciones con Acordeón (Escritorio) */
 .customizer-section {
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--pn-line);
+    border-radius: 14px;
+    background: var(--pn-bg);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
 }
 
-/* Botón de acordeón (Escritorio) */
+.customizer-section.abierta {
+    border-color: var(--pn-active);
+}
+
+/* Botón de acordeón */
 .acc-header {
     display: flex;
     align-items: center;
     gap: 10px;
     width: 100%;
-    background: none;
+    background: var(--pn-surface);
     border: none;
-    padding: 0 0 10px 0;
-    font-size: 0.72rem;
+    padding: 14px 16px;
+    font-size: 0.8rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--pn-muted);
-    cursor: default;
+    letter-spacing: 0.5px;
+    color: var(--pn-ink-soft);
+    cursor: pointer;
+    /* Habilitado para hacer clic */
+    transition: background 0.2s;
+    text-align: left;
 }
 
-.acc-chevron,
+.acc-header:hover {
+    background: #e4e4e7;
+}
+
+.acc-chevron {
+    margin-left: auto;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.customizer-section.abierta .acc-chevron {
+    transform: rotate(180deg);
+}
+
 .acc-corto {
     display: none;
 }
 
+/* Contenido desplegable */
 .acc-content {
+    display: none;
+    padding: 16px;
+    border-top: 1px solid var(--pn-line);
+}
+
+.customizer-section.abierta .acc-content {
     display: block;
 }
 
-/* Grid de diseños y negocios */
+.panel-section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--pn-ink);
+    margin-bottom: 12px;
+}
+
+/* Grids (Escritorio) */
 .panel-designs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* 👈 3 COLUMNAS EN ESCRITORIO */
     gap: 8px;
 }
 
@@ -191,11 +229,17 @@ body.panel-open .btn-personalizar {
     gap: 8px;
 }
 
-/* Botones */
+.panel-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+/* Botones Base */
 .panel-design-btn,
-.panel-negocio-btn {
+.panel-negocio-btn,
+.panel-card-btn {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6px;
@@ -205,20 +249,34 @@ body.panel-open .btn-personalizar {
     border-radius: var(--pn-radius-md);
     cursor: pointer;
     color: var(--pn-ink);
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-align: center;
     transition: all 0.2s ease;
 }
 
+.panel-design-btn {
+    flex-direction: column;
+}
+
+.panel-negocio-btn,
+.panel-card-btn {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+}
+
 .panel-design-btn:hover,
-.panel-negocio-btn:hover {
+.panel-negocio-btn:hover,
+.panel-card-btn:hover {
     background: #fff;
     border-color: #a1a1aa;
 }
 
 .panel-design-btn.active,
-.panel-negocio-btn.active {
+.panel-negocio-btn.active,
+.panel-card-btn.active {
     border-color: var(--pn-active);
     background: #fff;
 }
@@ -236,14 +294,8 @@ body.panel-open .btn-personalizar {
     box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--pn-active);
 }
 
-.panel-negocio-btn {
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 10px 12px;
-    font-size: 0.8rem;
-}
-
-.panel-negocio-btn .pn-ico {
+.panel-negocio-btn .pn-ico,
+.panel-card-btn .pn-c-ico {
     font-size: 1.1rem;
 }
 
@@ -323,6 +375,9 @@ body.panel-open .btn-personalizar {
     --swatch-b: #8b6bff;
 }
 
+.dock-cerrar {
+    display: none;
+}
 
 /* ============================================================ */
 /* MÓVIL: Barra inferior tipo demo (dock)                       */
@@ -358,12 +413,10 @@ body.panel-open .btn-personalizar {
         transform: translateY(0);
     }
 
-    /* Ocultamos el header tradicional */
     .panel-header {
         display: none;
     }
 
-    /* El body se convierte en una barra horizontal */
     .customizer-body {
         display: flex;
         flex-direction: row;
@@ -371,9 +424,9 @@ body.panel-open .btn-personalizar {
         padding: 8px 6px;
         overflow: visible;
         flex-grow: 0;
+        border: none;
     }
 
-    /* Cada sección es un botón de la barra */
     .customizer-section {
         flex: 1;
         min-width: 0;
@@ -382,11 +435,14 @@ body.panel-open .btn-personalizar {
         background: transparent;
         overflow: visible;
         position: relative;
+        border-radius: 0;
     }
 
-    /* Estilos de botón para la barra */
-    .acc-header,
-    .dock-cerrar {
+    .customizer-section.abierta {
+        border: none;
+    }
+
+    .acc-header {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -402,9 +458,13 @@ body.panel-open .btn-personalizar {
         text-align: center;
         background: transparent;
         border: none;
-        cursor: pointer;
         color: var(--pn-ink-soft);
         margin: 0;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .acc-header:hover {
+        background: transparent;
     }
 
     .acc-icono {
@@ -425,17 +485,27 @@ body.panel-open .btn-personalizar {
     }
 
     .dock-cerrar {
+        display: flex;
         flex: 0 0 60px;
         width: 60px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 10px 2px;
+        background: transparent;
+        border: none;
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--pn-ink-soft);
+        cursor: pointer;
     }
 
-    /* Botón activo en la barra */
     .customizer-section.abierta .acc-header {
         background: var(--pn-active);
         color: #fff;
     }
 
-    /* La bandeja que sube al abrir una sección */
     .acc-content {
         display: none;
         position: absolute;
@@ -449,6 +519,9 @@ body.panel-open .btn-personalizar {
         border-top: 1px solid var(--pn-line);
         box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.12);
         margin-bottom: 8px;
+        border-radius: 16px 16px 0 0;
+        border-left: 1px solid var(--pn-line);
+        border-right: 1px solid var(--pn-line);
     }
 
     .customizer-section.abierta .acc-content {
@@ -468,9 +541,16 @@ body.panel-open .btn-personalizar {
         }
     }
 
-    /* En móvil, 3 columnas también para diseño */
     .panel-designs {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .panel-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .panel-negocios {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .panel-design-btn {
@@ -484,13 +564,8 @@ body.panel-open .btn-personalizar {
         display: none;
     }
 
-    /* Ocultamos texto en móvil para que solo se vea color */
     .panel-swatch {
         display: none;
-    }
-
-    .panel-negocios {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
