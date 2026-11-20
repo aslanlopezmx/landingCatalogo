@@ -1,0 +1,47 @@
+/* ==================================================================== */
+/* BOTÓN FIJO DE WHATSAPP                                               */
+/* Estilo fijo (verde WhatsApp), independiente del diseño activo.       */
+/* Se posiciona justo arriba del botón "Personalizar".                  */
+/* ==================================================================== */
+
+.btn-wa-fijo {
+    position: fixed;
+    right: 24px;
+    bottom: 80px;
+    z-index: 998;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #0f7a40;
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(15, 122, 64, 0.45);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-wa-fijo:hover {
+    background: #0c6a37;
+    transform: scale(1.08);
+}
+
+.btn-wa-fijo:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px #0f7a40;
+}
+
+.btn-wa-fijo .wa-ico {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+/* En celular, con el panel de personalización abierto, se oculta para no taparlo */
+@media (max-width: 767px) {
+    body.panel-open .btn-wa-fijo {
+        display: none;
+    }
+}
