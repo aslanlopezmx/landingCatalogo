@@ -413,6 +413,10 @@ body.panel-open .btn-personalizar {
         transform: translateY(0);
     }
 
+    .design-panel:has(.customizer-section.abierta) {
+        border-radius: 0;
+    }
+
     .panel-header {
         display: none;
     }
@@ -425,6 +429,7 @@ body.panel-open .btn-personalizar {
         overflow: visible;
         flex-grow: 0;
         border: none;
+        position: relative;
     }
 
     .customizer-section {
@@ -434,7 +439,7 @@ body.panel-open .btn-personalizar {
         border: none;
         background: transparent;
         overflow: visible;
-        position: relative;
+        position: static;
         border-radius: 0;
     }
 
@@ -512,13 +517,13 @@ body.panel-open .btn-personalizar {
         bottom: 100%;
         left: 0;
         right: 0;
-        max-height: 50vh;
+        max-height: 85vh;
         overflow-y: auto;
         padding: 16px;
         background: var(--pn-bg);
         border-top: 1px solid var(--pn-line);
         box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.12);
-        margin-bottom: 8px;
+        margin-bottom: 0;
         border-radius: 16px 16px 0 0;
         border-left: 1px solid var(--pn-line);
         border-right: 1px solid var(--pn-line);
@@ -542,20 +547,25 @@ body.panel-open .btn-personalizar {
     }
 
     .panel-designs {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
     }
 
     .panel-cards {
         grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
     }
 
     .panel-negocios {
         grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
     }
 
     .panel-design-btn {
-        height: 54px;
+        aspect-ratio: 1 / 1;
+        height: auto;
         padding: 0;
+        border-radius: 50%;
         overflow: hidden;
         background: linear-gradient(135deg, var(--swatch-a) 50%, var(--swatch-b) 50%);
     }
@@ -566,6 +576,19 @@ body.panel-open .btn-personalizar {
 
     .panel-swatch {
         display: none;
+    }
+
+    .panel-negocio-btn,
+    .panel-card-btn {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+        border-radius: 10px;
+        gap: 6px;
+    }
+
+    .panel-negocio-btn .pn-ico,
+    .panel-card-btn .pn-c-ico {
+        font-size: 0.9rem;
     }
 }
 

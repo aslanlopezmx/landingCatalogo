@@ -86,6 +86,11 @@ function togglePanel() {
   panel.classList.toggle("open", abrir);
   panel.setAttribute("aria-hidden", abrir ? "false" : "true");
   document.body.classList.toggle("panel-open", abrir);
+  if (!abrir) {
+    document
+      .querySelectorAll(".customizer-section.abierta")
+      .forEach((s) => s.classList.remove("abierta"));
+  }
 }
 
 function alternarSeccion(btn) {
